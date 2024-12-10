@@ -27,22 +27,27 @@ public class Reservation {
     }
 
     public int getReservationID() {
+
         return ID;
     }
 
     public Customer getCustomer() {
+
         return customer;
     }
 
     public void setCustomer(Customer customer) {
+
         this.customer = customer;
     }
 
     public Room getRoom() {
+
         return room;
     }
 
     public Date getStartdate() {
+
         return startdate;
     }
 
@@ -51,18 +56,22 @@ public class Reservation {
     }
 
     public Date getEnddate() {
+
         return enddate;
     }
 
     public void setEnddate(Date enddate) {
+
         this.enddate = enddate;
     }
 
     public String getDetail() {
+
         return detail;
     }
 
     public void setDetail(String detail) {
+
         this.detail = detail;
     }
 
