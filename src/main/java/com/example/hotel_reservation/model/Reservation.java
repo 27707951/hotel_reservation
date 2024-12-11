@@ -4,4 +4,5 @@ import jakarta.persistence.*;
 @Entity
 public class Reservation {
 
+
 }
