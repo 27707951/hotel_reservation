@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reservation</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Hotel Reservation</h1>
+<form id="reservationForm" action="/reserve" method="post">
+    <label for="checkin">Check-in Date:</label>
+    <input type="date" id="checkin" name="checkin" required><br>
+
+    <label for="checkout">Check-out Date:</label>
+    <input type="date" id="checkout" name="checkout" required><br>
+
+    <label for="roomType">Room Type:</label>
+    <select id="roomType" name="roomType" required>
+        <option value="single">Single</option>
+        <option value="double">Double</option>
+        <option value="suite">Suite</option>
+    </select><br>
+
+    <button type="submit">Reserve</button>
+</form>
+<script src="/scripts.js"></script>
+</body>
+</html>
