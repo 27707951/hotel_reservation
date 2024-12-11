@@ -8,16 +8,12 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
 
-    @JoinColumn(name = "customerID", nullable = false)
-    private Integer customerID;
-
-    @JoinColumn(name = "roomID", nullable = false)
-    private Integer roomID;
-
+    private String customerName;
+    private Long phoneNumber;
     private String startDate;
     private String endDate;
-
-    @Lob
+    private Integer guestNumber;
+    private Integer roomID;
     private String detail;
 
     public Reservation(Customer customer, Room room, Date startdate, Date enddate, String detail) {
