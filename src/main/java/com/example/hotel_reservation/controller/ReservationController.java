@@ -1,24 +1,30 @@
 package com.example.hotel_reservation.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import com.example.hotel_reservation.dto.ReservationResponse;
+import com.example.hotel_reservation.service.ReservationService;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/reservations")
 public class ReservationController {
 
-    @PostMapping("/reserve") // 必須和表單 action 一致
-    public String reserve(@RequestParam String checkin,
-                          @RequestParam String checkout,
-                          @RequestParam String roomType,
-                          Model model) {
-        // 添加用戶提交的資料到模型中
-        model.addAttribute("checkin", checkin);
-        model.addAttribute("checkout", checkout);
-        model.addAttribute("roomType", roomType);
+    private final ReservationService reservationService;
 
-        // 返回成功畫面名稱
-        return "success";
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
+    
+    @PostMapping("/check-availability")
+    public ResponseEntity<?> checkAvailability(@RequestBody CheckAvailabilityRequest reservationRequest) {}
+
+    @PostMapping("/confirm")
+    public ResponseEntity<?> confirmReservation(@RequestBody ReservationRequest request) {
+        try {
+            ReservationResponse reservation = reservationService.confirmReservation(request);
+            return ResponseEntity.ok(reservation);
+        } catch (InvalidReservationException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }
-
