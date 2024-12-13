@@ -19,6 +19,8 @@ public class CustomerRequest {
         this.name = name;
         this.phone = phone;
         this.detail = detail;
+
+
     }
 
     public String getName() {

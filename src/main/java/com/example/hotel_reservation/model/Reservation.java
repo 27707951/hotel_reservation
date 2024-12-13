@@ -8,18 +8,19 @@ public class Reservation {
 
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer ID;
 
     private Integer customerId;
+    private static Integer roomId;
+    private static LocalDate startDate;
+    private static LocalDate endDate;
+    private static String detail;
 
 
-    private Integer roomId;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private String detail;
+    public Reservation(Integer ID, Integer customerId, Integer roomId, LocalDate startDate, LocalDate endDate, String detail ) {
 
-
-    public Reservation(Integer ID, int customerId, int roomId, LocalDate startDate, LocalDate endDate, String detail ) {
-        this.ID = ID;
         this.customerId = customerId;
         this.roomId = roomId;
         this.startDate = startDate;
@@ -32,41 +33,57 @@ public class Reservation {
 
     }
 
+    public static void setId(Integer id) {
+    }
+
     public Integer getID() {
+
         return ID;
     }
+
     public void setID(Integer ID) {
-        this.ID = ID;
+
     }
     public Integer getCustomerId() {
+
         return customerId;
     }
+
     public void setCustomerId(Integer customerId) {
+
         this.customerId = customerId;
     }
-    public Integer getRoomId() {
+    public static Integer getRoomId() {
+
         return roomId;
     }
     public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+
+        Reservation.roomId = roomId;
     }
-    public LocalDate getStartDate() {
+    public static LocalDate getStartDate() {
+
         return startDate;
     }
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public static void setStartDate(LocalDate startDate) {
+
+        Reservation.startDate = startDate;
     }
-    public LocalDate getEndDate() {
+    public static LocalDate getEndDate() {
+
         return endDate;
     }
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public static void setEndDate(LocalDate endDate) {
+
+        Reservation.endDate = endDate;
     }
-    public String getDetail() {
+    public static String getDetail() {
+
         return detail;
     }
     public void setDetail(String detail) {
-        this.detail = detail;
+
+        Reservation.detail = detail;
     }
 
 
