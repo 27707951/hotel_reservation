@@ -40,7 +40,7 @@ body{
 .room img:hover {
   transform: scale(1.05);
 }
-.borderdesign {
+.design {
     display: inline-block;
     background-color: #ecece7ba;
     padding: 10px;
