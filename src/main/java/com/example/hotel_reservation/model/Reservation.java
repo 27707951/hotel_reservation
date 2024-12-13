@@ -4,24 +4,30 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "reservation")
 public class Reservation {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ID;
 
+    @ManyToOne
+    @JoinColumn(name = "customerID", referencedColumnName = "ID")
+    private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name = "roomID", referencedColumnName = "ID")
+    private Room room;
 
-    private Integer customerId;
-
-
-    private Integer roomId;
     private LocalDate startDate;
     private LocalDate endDate;
     private String detail;
 
 
-    public Reservation(Integer ID, int customerId, int roomId, LocalDate startDate, LocalDate endDate, String detail ) {
+    public Reservation(Integer ID, Room room, Customer customer, LocalDate startDate, LocalDate endDate, String detail ) {
         this.ID = ID;
-        this.customerId = customerId;
-        this.roomId = roomId;
+        this.customer = customer;
+        this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
         this.detail = detail;
@@ -38,17 +44,17 @@ public class Reservation {
     public void setID(Integer ID) {
         this.ID = ID;
     }
-    public Integer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
-    public Integer getRoomId() {
-        return roomId;
+    public Room getRoom() {
+        return room;
     }
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
     public LocalDate getStartDate() {
         return startDate;

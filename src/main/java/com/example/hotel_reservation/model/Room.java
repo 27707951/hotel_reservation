@@ -1,11 +1,9 @@
 package com.example.hotel_reservation.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "room")
 public class Room {
 
     @Id
@@ -16,9 +14,7 @@ public class Room {
     private Integer price ;
     private Integer maxOccupancy;
 
-    public Room() {
-
-    }
+    public Room() {}
 
     public Room (Integer id, String roomType, Integer price , Integer maxOccupancy){
         this.id = id;

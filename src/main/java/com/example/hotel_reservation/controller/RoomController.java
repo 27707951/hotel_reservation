@@ -6,8 +6,10 @@ import com.example.hotel_reservation.service.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping("/api/rooms")
 public class RoomController {
 
     private final RoomService roomService;
@@ -17,9 +19,9 @@ public class RoomController {
     }
 
     @PostMapping("/check-availability")
-    public ResponseEntity<?> checkRoomAvailability(@RequestBody RoomRequest request) {
+    public ResponseEntity<?> checkRoomAvailability(@RequestBody CheckAvailabilityRequest request) {
         try {
-            List<RoomResponse> availableRooms = roomService.checkAvailability(request);
+            List<RoomResponse> availableRooms = roomService.findAvailableRooms(request.getStartDate(), request.getEndDate());
             return ResponseEntity.ok(availableRooms);
         } catch (NoAvailableRoomException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
