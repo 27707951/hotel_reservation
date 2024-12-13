@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+
 public class CheckAvailabilityRequest {
     @NotNull(message = "Start date is required.")
     private LocalDate startDate;

@@ -53,11 +53,11 @@
     font-family: serif;
     font-size: 18px;
     color:#819db2;
-    padding: 8px;
+
     margin: 5px 0;
     background-color: #FFFFFF;
     border: 1px solid #ecece7;
-    padding: 0 8px;
+        padding: 0 8px;
     letter-spacing: 1px;
     box-shadow: 0 2px 3px 0 rgba(255,255,255,1);
     }
@@ -107,10 +107,9 @@ font-size:large;
 
 
 h3{
-font-size: 40px;
 color: #1c2a37;
 text-align: center;
-font-size:large;
+    font-size: 40px;
 }
    
 div.result{
@@ -121,7 +120,7 @@ width: 100px;
 margin: 20px;
 }
 
-
+/*
 div.result2{
 background-color:#d1dce4;
 height: 380px;
@@ -129,7 +128,7 @@ width: 10px;
 margin-left: 80px;
 margin-right: 80px;
 margin-top: 20px;
-}
+}*/
 
 
 div.result2 h3{
