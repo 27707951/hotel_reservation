@@ -6,9 +6,7 @@ import java.time.LocalDate;
 @Entity
 public class Reservation {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
+
 
 
     private Integer customerId;
