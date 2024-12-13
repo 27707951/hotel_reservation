@@ -1,6 +1,8 @@
 package com.example.hotel_reservation.model;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 public class Reservation {
 
@@ -8,74 +10,67 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
 
-    private String customerName;
-    private Long phoneNumber;
-    private String startDate;
-    private String endDate;
-    private Integer guestNumber;
-    private Integer roomID;
+
+    private Integer customerId;
+
+
+    private Integer roomId;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String detail;
 
-    public Reservation(Customer customer, Room room, Date startdate, Date enddate, String detail) {
+
+    public Reservation(Integer ID, int customerId, int roomId, LocalDate startDate, LocalDate endDate, String detail ) {
+        this.ID = ID;
+        this.customerId = customerId;
+        this.roomId = roomId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.detail = detail;
+
     }
 
-    public int getReservationID() {
+    public Reservation() {
 
+    }
+
+    public Integer getID() {
         return ID;
     }
-
-    public Customer getCustomer() {
-
-        return customer;
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
-
-    public void setCustomer(Customer customer) {
-
-        this.customer = customer;
+    public Integer getCustomerId() {
+        return customerId;
     }
-
-    public Room getRoom() {
-
-        return room;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
-
-    public Date getStartdate() {
-
-        return startdate;
+    public Integer getRoomId() {
+        return roomId;
     }
-
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
-
-    public Date getEnddate() {
-
-        return enddate;
+    public LocalDate getStartDate() {
+        return startDate;
     }
-
-    public void setEnddate(Date enddate) {
-
-        this.enddate = enddate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
-
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
     public String getDetail() {
-
         return detail;
     }
-
     public void setDetail(String detail) {
-
         this.detail = detail;
     }
 
-    public void createReservation(Customer customer, Room room, Date startdate, Date enddate, String detail) {
-        this.customer = customer;
-        this.room = room;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.detail = detail;
-    }
+
+
 }
