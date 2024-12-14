@@ -4,25 +4,30 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "reservation")
 public class Reservation {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ID;
+    private int ID;
 
-    private Integer customerId;
-    private static Integer roomId;
-    private static LocalDate startDate;
-    private static LocalDate endDate;
-    private static String detail;
+    @ManyToOne
+    @JoinColumn(name = "customerID", referencedColumnName = "ID")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "roomID", referencedColumnName = "ID")
+    private Room room;
+
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String detail;
 
 
-    public Reservation(Integer ID, Integer customerId, Integer roomId, LocalDate startDate, LocalDate endDate, String detail ) {
-
-        this.customerId = customerId;
-        this.roomId = roomId;
+    public Reservation(Integer ID, Room room, Customer customer, LocalDate startDate, LocalDate endDate, String detail ) {
+        this.ID = ID;
+        this.customer = customer;
+        this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
         this.detail = detail;
@@ -44,22 +49,18 @@ public class Reservation {
     public void setID(Integer ID) {
 
     }
-    public Integer getCustomerId() {
 
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
-
-    public void setCustomerId(Integer customerId) {
-
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
-    public static Integer getRoomId() {
-
-        return roomId;
+    public Room getRoom() {
+        return room;
     }
-    public void setRoomId(Integer roomId) {
-
-        Reservation.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
     public static LocalDate getStartDate() {
 
