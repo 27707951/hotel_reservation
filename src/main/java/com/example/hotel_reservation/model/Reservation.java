@@ -1,10 +1,9 @@
 package com.example.hotel_reservation.model;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "reservation")
 public class Reservation {
 
     @Id
@@ -32,22 +31,25 @@ public class Reservation {
         this.endDate = endDate;
         this.detail = detail;
 
+    // Getters 和 Setters
+    public Integer getId() {
+        return id;
     }
 
-    public Reservation() {
-
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public static void setId(Integer id) {
+    public String getName() {
+        return name;
     }
 
-    public Integer getID() {
-
-        return ID;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setID(Integer ID) {
-
+    public String getPhone() {
+        return phone;
     }
 
     public Customer getCustomer() {
@@ -66,27 +68,40 @@ public class Reservation {
 
         return startDate;
     }
-    public static void setStartDate(LocalDate startDate) {
 
-        Reservation.startDate = startDate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
-    public static LocalDate getEndDate() {
 
+    public LocalDate getEndDate() {
         return endDate;
     }
-    public static void setEndDate(LocalDate endDate) {
 
-        Reservation.endDate = endDate;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
-    public static String getDetail() {
 
+    public Integer getGuestNumber() {
+        return guestNumber;
+    }
+
+    public void setGuestNumber(Integer guestNumber) {
+        this.guestNumber = guestNumber;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+    public String getDetail() {
         return detail;
     }
+
     public void setDetail(String detail) {
-
-        Reservation.detail = detail;
+        this.detail = detail;
     }
-
-
-
 }

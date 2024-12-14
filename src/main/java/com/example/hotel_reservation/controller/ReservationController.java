@@ -1,11 +1,8 @@
 package com.example.hotel_reservation.controller;
 
-import com.example.hotel_reservation.dto.CheckAvailabilityRequest;
-import com.example.hotel_reservation.dto.CustomerRequest;
 import com.example.hotel_reservation.dto.ReservationResponse;
-import com.example.hotel_reservation.exception.NoAvailableRoomException;
 import com.example.hotel_reservation.service.ReservationService;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,27 +14,20 @@ public class ReservationController {
     public ReservationController(ReservationService reservationService) {
         this.reservationService = reservationService;
     }
-    
-    @PostMapping("/check-availability")
-    public ResponseEntity<?> checkAvailability(@RequestBody CheckAvailabilityRequest reservationRequest) {
-        boolean isAvailable = reservationService.checkAvailability(request);
-        if (isAvailable) {
-            return ResponseEntity.ok("Room available");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No available rooms");
-        }
 
-    }
-
+    // 儲存預約
     @PostMapping("/confirm")
-    public ResponseEntity<?> confirmReservation(@RequestBody CustomerRequest customerRequest,
-                                                @RequestBody CheckRoomAvailabilityRequest checkRoomRequest) {
-
-        try {
-            ReservationResponse reservation = reservationService.confirmReservation();
-            return ResponseEntity.ok(reservation);
-        } catch (NoAvailableRoomException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    public ResponseEntity<ReservationResponse> confirmReservation(@RequestBody ReservationResponse response) {
+        ReservationResponse savedReservation = reservationService.saveReservation(response);
+        return ResponseEntity.ok(savedReservation);
     }
+
+    // 刪除預約
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteReservation(@PathVariable Integer id) {
+        reservationService.deleteReservation(id);
+        return ResponseEntity.ok("Reservation with ID " + id + " has been deleted.");
+    }
+
+
 }

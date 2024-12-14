@@ -12,7 +12,8 @@ public class ReservationResponse {
     private String roomType;
     private String detail;
 
-    public ReservationResponse(String name, String phone, LocalDate startDate, LocalDate endDate, Integer guestNumber, String roomType, String detail) {
+    public ReservationResponse(Integer id ,String name, String phone, LocalDate startDate, LocalDate endDate, Integer guestNumber, String roomType, String detail) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.startDate = startDate;
@@ -20,6 +21,10 @@ public class ReservationResponse {
         this.guestNumber = guestNumber;
         this.roomType = roomType;
         this.detail = detail;
+    }
+
+    public ReservationResponse() {
+
     }
 
     public Integer getId() {
