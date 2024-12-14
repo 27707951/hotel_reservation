@@ -1,9 +1,11 @@
 package com.example.hotel_reservation.model;
 
+
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "reservation")
 public class Reservation {
 
     @Id
@@ -73,6 +75,7 @@ public class Reservation {
         this.startDate = startDate;
     }
 
+
     public LocalDate getEndDate() {
         return endDate;
     }
@@ -96,6 +99,7 @@ public class Reservation {
     public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
+
 
     public String getDetail() {
         return detail;
