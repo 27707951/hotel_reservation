@@ -15,6 +15,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
+
         this.customerService = customerService;
     }
 
@@ -22,7 +23,7 @@ public class CustomerController {
     @PostMapping("/save")
     public ResponseEntity<?> saveCustomer(@RequestBody CustomerRequest request) {
         try {
-            CustomerRequest customer = customerService.saveCustomer(request);
+            Customer customer = customerService.saveCustomer(request);
             return ResponseEntity.ok(customer);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
