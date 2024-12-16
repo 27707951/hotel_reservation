@@ -5,6 +5,7 @@ public class RoomResponse {
     private Integer maxOccupancy;
     private Integer price;
     private Integer id;
+    private String imageUrl;
 
     public RoomResponse(Integer id, String roomType, Integer maxOccupancy, Integer price, String imageUrl) {
         this.id = id;
@@ -44,5 +45,24 @@ public class RoomResponse {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "RoomResponse{" +
+                "id=" + id +
+                ", roomType='" + roomType + '\'' +
+                ", maxOccupancy=" + maxOccupancy +
+                ", price=" + price +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
 }

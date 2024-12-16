@@ -13,6 +13,8 @@ public class Room {
     private String roomType ;
     private Integer price ;
     private Integer maxOccupancy;
+
+    @Column(name = "imageUrl")
     private String imageUrl;
 
     public Room() {}
@@ -23,7 +25,6 @@ public class Room {
         this.price = price;
         this.maxOccupancy = maxOccupancy;
         this.imageUrl = imageUrl;
-
     }
 
     public Integer getId() {

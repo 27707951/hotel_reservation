@@ -86,7 +86,6 @@
       <p>Number of guests:</p>
       <input type="number" id="numberOfGuests" name="numberOfGuests" min="1" placeholder="Enter number of guests">
       <br>
-      <br>
       <button type="submit" class="submitbutton">Look up availability</button>
     </form>
 
@@ -95,11 +94,11 @@
         event.preventDefault();
 
         const checkinYear = document.getElementById('checkinYear').value;
-        const checkinMonth = document.getElementById('checkinMonth').value.padStart(2, '0');
-        const checkinDate = document.getElementById('checkinDate').value.padStart(2, '0');
+        const checkinMonth = String(document.getElementById('checkinMonth').value).padStart(2, '0');
+        const checkinDate = String(document.getElementById('checkinDate').value).padStart(2, '0');
         const checkoutYear = document.getElementById('checkoutYear').value;
-        const checkoutMonth = document.getElementById('checkoutMonth').value.padStart(2, '0');
-        const checkoutDate = document.getElementById('checkoutDate').value.padStart(2, '0');
+        const checkoutMonth = String(document.getElementById('checkoutMonth').value).padStart(2, '0');
+        const checkoutDate = String(document.getElementById('checkoutDate').value).padStart(2, '0');
         const numberOfGuests = document.getElementById('numberOfGuests').value;
 
         if (!checkinYear || !checkinMonth || !checkinDate || !checkoutYear || !checkoutMonth || !checkoutDate) {
