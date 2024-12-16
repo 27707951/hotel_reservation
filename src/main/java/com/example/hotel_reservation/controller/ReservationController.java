@@ -1,8 +1,11 @@
 package com.example.hotel_reservation.controller;
 
 import com.example.hotel_reservation.dto.ReservationResponse;
+import com.example.hotel_reservation.repository.CustomerRepository;
+import com.example.hotel_reservation.repository.RoomRepository;
 import com.example.hotel_reservation.service.ReservationService;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,21 +13,26 @@ import org.springframework.web.bind.annotation.*;
 public class ReservationController {
 
     private final ReservationService reservationService;
+    private final CustomerRepository customerRepository;
+    private final RoomRepository roomRepository;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(ReservationService reservationService,
+                                 CustomerRepository customerRepository,
+                                 RoomRepository roomRepository) {
         this.reservationService = reservationService;
+        this.customerRepository = customerRepository;
+        this.roomRepository = roomRepository;
     }
-    
-    @PostMapping("/check-availability")
-    public ResponseEntity<?> checkAvailability(@RequestBody CheckAvailabilityRequest reservationRequest) {}
 
     @PostMapping("/confirm")
-    public ResponseEntity<?> confirmReservation(@RequestBody ReservationRequest request) {
+    public ResponseEntity<ReservationResponse> confirmReservation(@RequestBody ReservationResponse response,
+                                                                  @RequestParam Integer customerId,
+                                                                  @RequestParam Integer roomId) {
         try {
-            ReservationResponse reservation = reservationService.confirmReservation(request);
-            return ResponseEntity.ok(reservation);
-        } catch (InvalidReservationException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            ReservationResponse savedReservation = reservationService.saveReservation(response, customerId, roomId);
+            return ResponseEntity.ok(savedReservation);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
 }

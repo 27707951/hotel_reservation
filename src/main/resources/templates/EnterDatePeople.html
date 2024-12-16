@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/HotelReservationSystem.css">
+  <title>Find Room</title>
+</head>
+<body>
+<h1>Hotel Reservation System</h1>
+<h2>Please enter desired date and number of guests</h2>
+<br>
+<form id="availabilityForm">
+  <p>Desired check-in date :</p>
+
+  <label for="checkinYear">YEAR :</label>
+  <select id="checkinYear" name="year">
+    <option value="">Select Year</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+  </select>
+
+  <label for="checkinMonth">MONTH :</label>
+  <select id="checkinMonth" name="month">
+    <option value="">Select Month</option>
+    <option value="1">January</option>
+    <option value="2">February</option>
+    <option value="3">March</option>
+    <option value="4">April</option>
+    <option value="5">May</option>
+    <option value="6">June</option>
+    <option value="7">July</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+  </select>
+
+  <label for="checkinDate">DATE :</label>
+  <select id="checkinDate" name="date">
+    <option value="">Select date</option>
+    <script>
+      for (let i = 1; i <= 31; i++) {
+        document.write(`<option value="${i}">${i} </option>`);
+      }
+    </script>
+  </select>
+
+  <p>Desired check-out date :</p>
+  <label for="checkoutYear">YEAR :</label>
+  <select id="checkoutYear" name="year">
+    <option value="">Select Year</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+  </select>
+
+  <label for="checkoutMonth">MONTH :</label>
+  <select id="checkoutMonth" name="month">
+    <option value="">Select Month</option>
+    <option value="1">January</option>
+    <option value="2">February</option>
+    <option value="3">March</option>
+    <option value="4">April</option>
+    <option value="5">May</option>
+    <option value="6">June</option>
+    <option value="7">July</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+  </select>
+
+  <label for="checkoutDate">DATE :</label>
+  <select id="checkoutDate" name="date">
+    <option value="">Select date</option>
+    <script>
+      for (let i = 1; i <= 31; i++) {
+        document.write(`<option value="${i}">${i} </option>`);
+      }
+    </script>
+  </select>
+  <p>Number of guests :<label for="numberOfGuests"></label><input type="number" id="numberOfGuests" name="numberOfGuests" min="1" placeholder="Enter number of guests"></p>
+  <br>
+  <br>
+  <br>
+  <button type="submit" class="submitbutton">Look up availability</button>
+</form>
+
+<script>
+  document.getElementById('availabilityForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const checkinYear = document.getElementById('checkinYear').value;
+    const checkinMonth = String(document.getElementById('checkinMonth').value).padStart(2, '0');
+    const checkinDate = String(document.getElementById('checkinDate').value).padStart(2, '0');
+    const checkoutYear = document.getElementById('checkoutYear').value;
+    const checkoutMonth = String(document.getElementById('checkoutMonth').value).padStart(2, '0');
+    const checkoutDate = String(document.getElementById('checkoutDate').value).padStart(2, '0');
+    const numberOfGuests = document.getElementById('numberOfGuests').value;
+
+    if (!checkinYear || !checkinMonth || !checkinDate || !checkoutYear || !checkoutMonth || !checkoutDate) {
+      alert('Please fill out all date fields.');
+      return;
+    }
+
+    const payload = {
+      startDate: `${checkinYear}-${checkinMonth}-${checkinDate}`,
+      endDate: `${checkoutYear}-${checkoutMonth}-${checkoutDate}`,
+      numberOfGuests: parseInt(numberOfGuests, 10) || 1
+    };
+
+    try {
+      const response = await fetch('/api/rooms/check-availability', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const availableRooms = await response.json();
+        console.log('Available rooms:', availableRooms);
+        alert('Rooms available! Check the console for details.');
+      } else {
+        const errorMsg = await response.text();
+        console.error('Error:', errorMsg);
+        alert('No available rooms found.');
+      }
+    } catch (error) {
+      console.error('Request failed:', error);
+      alert('Something went wrong. Please try again later.');
+    }
+  });
+</script>
+</body>
+</html>

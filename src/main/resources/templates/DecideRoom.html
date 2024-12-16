@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decide Room Page</title>
+  <link rel="stylesheet" href="../static/DecideRoom.css">
+</head>
+<body>
+<br>
+<div class="title">Hotel Reservation System</div>
+<h2>Please Choose a Desired Room</h2>
+
+<div class="news-filter">
+  <select name="filterby" id="filterby">
+    <option value="noFilter">All rooms</option>
+    <option value="priceHighToLow">Price from high to low</option>
+    <option value="priceLowToHigh">Price from low to high</option>
+    <option value="2">Room for 2</option>
+    <option value="4">Room for 4</option>
+    <option value="6">Room for 6</option>
+  </select>
+
+</div>
+
+<div id="loading" style="display: none;">Loading...</div>
+
+<div class="gallery" id="roomContainer">
+</div>
+
+<script>
+  document.getElementById('filterby').addEventListener('change', async function () {
+    const selectedValue = this.value;
+    const roomContainer = document.getElementById('roomContainer');
+    const loading = document.getElementById('loading');
+
+    try {
+      loading.style.display = 'block';
+      roomContainer.innerHTML = '';
+
+      const payload = { filterBy: selectedValue };
+
+      const apiUrl = '/api/rooms/filter';
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data from server');
+      }
+
+      const rooms = await response.json();
+      loading.style.display = 'none';
+
+      if (rooms.length === 0) {
+        window.location.href = 'NoRoomAvailable.html'; // 無房間時跳轉
+        return;
+      }
+
+      rooms.forEach(room => {
+        const roomCard = `
+        <div class="design">
+          <div class="room">
+            <a href="EnterInfo.html">
+              <img src="${room.imageUrl}" alt="${room.name}">
+            </a>
+            <h2>${room.name}<br>
+              Room Capacity : ${room.capacity} guests<br>
+              Room Price/ night : $${room.price}
+            </h2>
+          </div>
+        </div>
+      `;
+        roomContainer.insertAdjacentHTML('beforeend', roomCard);
+      });
+
+    } catch (error) {
+      console.error('Error fetching room data:', error);
+      alert('Failed to load rooms. Please try again later.');
+      loading.style.display = 'none';
+    }
+  });
+
+</script>
+</body>
+</html>
