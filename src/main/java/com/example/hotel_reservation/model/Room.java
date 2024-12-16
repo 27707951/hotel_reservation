@@ -1,11 +1,9 @@
 package com.example.hotel_reservation.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "room")
 public class Room {
 
     @Id
@@ -16,16 +14,17 @@ public class Room {
     private Integer price ;
     private Integer maxOccupancy;
 
-    public Room() {
+    @Column(name = "imageUrl")
+    private String imageUrl;
 
-    }
+    public Room() {}
 
     public Room (Integer id, String roomType, Integer price , Integer maxOccupancy){
         this.id = id;
         this.roomType = roomType;
         this.price = price;
         this.maxOccupancy = maxOccupancy;
-
+        this.imageUrl = imageUrl;
     }
 
     public Integer getId() {
@@ -59,6 +58,14 @@ public class Room {
 
     public void setMaxOccupancy(Integer maxOccupancy) {
         this.maxOccupancy = maxOccupancy;
-
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 }
