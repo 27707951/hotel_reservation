@@ -223,7 +223,7 @@ box-shadow: 0 2px 3px 0 rgba(255,255,255,1);
 /*-webkit-appearance: none;*/
 }
    
-submitbutton{
+.submitbutton{
 background-color: #ecece7;
 color: #2D4457;
 width: 350px;
@@ -252,6 +252,8 @@ font-family: serif;
 }
 
 
+
+
 .option-container {
 text-align: center;
 }
@@ -278,9 +280,9 @@ font-family:serif;
 
 
 .button-text2{
-font-size: 20px;
+font-size: 30px;
 color:#2D4457;
-font-weight: bold;
+font-weight: normal;
 font-family:serif;
 text-align:center;
 }
@@ -289,10 +291,18 @@ text-align:center;
 .button-text3{
 font-size: 20px;
 color:#ecece7;
-font-weight: bold;
-text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);
+font-weight: normal;
 font-family:serif;
 text-align:center;
+}
+
+.button-text4{
+    font-size: 20px;
+    color:#2D4457;
+    font-weight: normal;
+    font-family:serif;
+    text-align:center;
+
 }
 
 h2 label{
