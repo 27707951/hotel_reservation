@@ -95,11 +95,11 @@
         event.preventDefault();
 
         const checkinYear = document.getElementById('checkinYear').value;
-        const checkinMonth = String(document.getElementById('checkinMonth').value).padStart(2, '0');
-        const checkinDate = String(document.getElementById('checkinDate').value).padStart(2, '0');
+        const checkinMonth = document.getElementById('checkinMonth').value.padStart(2, '0');
+        const checkinDate = document.getElementById('checkinDate').value.padStart(2, '0');
         const checkoutYear = document.getElementById('checkoutYear').value;
-        const checkoutMonth = String(document.getElementById('checkoutMonth').value).padStart(2, '0');
-        const checkoutDate = String(document.getElementById('checkoutDate').value).padStart(2, '0');
+        const checkoutMonth = document.getElementById('checkoutMonth').value.padStart(2, '0');
+        const checkoutDate = document.getElementById('checkoutDate').value.padStart(2, '0');
         const numberOfGuests = document.getElementById('numberOfGuests').value;
 
         if (!checkinYear || !checkinMonth || !checkinDate || !checkoutYear || !checkoutMonth || !checkoutDate) {

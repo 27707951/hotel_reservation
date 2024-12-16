@@ -49,14 +49,15 @@
             const payload = {
                 name: guestName,
                 phone: guestPhone,
-                detail: otherNotes || null
+                notes: otherNotes || null
             };
 
             try {
-                document.querySelector('.submitbutton').disabled = true; // 禁用按鈕
-                const response = await fetch('/reservations/confirm', {
+                const response = await fetch('/api/guests', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                     body: JSON.stringify(payload),
                 });
 
@@ -70,8 +71,6 @@
             } catch (error) {
                 console.error('Error saving guest information:', error);
                 alert('An error occurred while saving guest information. Please try again later.');
-            } finally {
-                document.querySelector('.submitbutton').disabled = false; // 啟用按鈕
             }
         });
     </script>

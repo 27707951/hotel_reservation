@@ -2,60 +2,58 @@ package com.example.hotel_reservation.service;
 
 import com.example.hotel_reservation.dto.ReservationResponse;
 import com.example.hotel_reservation.model.Reservation;
-import com.example.hotel_reservation.exception.NoAvailableRoomException;
+import com.example.hotel_reservation.repository.CustomerRepository;
 import com.example.hotel_reservation.repository.ReservationRepository;
+import com.example.hotel_reservation.repository.RoomRepository;
 import org.springframework.stereotype.Service;
+import com.example.hotel_reservation.model.*;
 
+
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final CustomerRepository customerRepository;
+    private final RoomRepository roomRepository;
 
-    // 透過構造函數注入 Repository
-    public ReservationService(ReservationRepository reservationRepository) {
+    public ReservationService(ReservationRepository reservationRepository,
+                              CustomerRepository customerRepository,
+                              RoomRepository roomRepository) {
         this.reservationRepository = reservationRepository;
+        this.customerRepository = customerRepository;
+        this.roomRepository = roomRepository;
     }
 
-    // 儲存預約
-    public ReservationResponse saveReservation(ReservationResponse response) {
-        // 將 DTO 轉換成 Reservation 實體類
+    public ReservationResponse saveReservation(ReservationResponse response, Integer customerId, Integer roomId) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new IllegalArgumentException("Customer not found."));
+        Room room = roomRepository.findById((long) roomId)
+                .orElseThrow(() -> new IllegalArgumentException("Room not found."));
+        if (customer == null || room == null) {
+            throw new IllegalArgumentException("Customer or Room information cannot be null.");
+        }
+
         Reservation reservation = new Reservation();
-        reservation.setName(response.getName());
-        reservation.setPhone(response.getPhone());
+        reservation.setCustomer(customer);
+        reservation.setRoom(room);
         reservation.setStartDate(response.getStartDate());
         reservation.setEndDate(response.getEndDate());
-        reservation.setGuestNumber(response.getGuestNumber());
-        reservation.setRoomType(response.getRoomType());
         reservation.setDetail(response.getDetail());
 
-        // 儲存資料到資料庫
         Reservation savedReservation = reservationRepository.save(reservation);
 
-        // 回傳 ReservationResponse
         return new ReservationResponse(
                 savedReservation.getId(),
-                savedReservation.getName(),
-                savedReservation.getPhone(),
+                customer.getName(),
+                customer.getPhone(),
                 savedReservation.getStartDate(),
                 savedReservation.getEndDate(),
-                savedReservation.getGuestNumber(),
-                savedReservation.getRoomType(),
+                room.getMaxOccupancy(),
+                room.getRoomType(),
                 savedReservation.getDetail()
         );
     }
-
-    // 刪除預約
-    public void deleteReservation(Integer reservationId) {
-        Optional<Reservation> reservation = reservationRepository.findById(reservationId);
-        if (reservation.isPresent()) {
-            reservationRepository.deleteById(reservationId);
-        } else {
-            throw new IllegalArgumentException("Reservation with ID " + reservationId + " does not exist.");
-        }
-    }
-
-
-
 }

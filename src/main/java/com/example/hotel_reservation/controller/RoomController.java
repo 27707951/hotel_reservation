@@ -27,4 +27,13 @@ public class RoomController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<RoomResponse>> filterRooms(
+            @RequestParam(required = false) String filterBy,
+            @RequestParam(required = false) Integer capacity) {
+
+        List<RoomResponse> rooms = roomService.filterRooms(filterBy, capacity);
+        return ResponseEntity.ok(rooms);
+    }
 }

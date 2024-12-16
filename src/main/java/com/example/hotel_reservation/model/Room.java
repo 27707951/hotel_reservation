@@ -13,6 +13,7 @@ public class Room {
     private String roomType ;
     private Integer price ;
     private Integer maxOccupancy;
+    private String imageUrl;
 
     public Room() {}
 
@@ -21,6 +22,7 @@ public class Room {
         this.roomType = roomType;
         this.price = price;
         this.maxOccupancy = maxOccupancy;
+        this.imageUrl = imageUrl;
 
     }
 
@@ -55,6 +57,14 @@ public class Room {
 
     public void setMaxOccupancy(Integer maxOccupancy) {
         this.maxOccupancy = maxOccupancy;
-
     }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 }

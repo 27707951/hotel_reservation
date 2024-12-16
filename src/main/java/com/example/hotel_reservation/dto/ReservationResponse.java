@@ -4,105 +4,93 @@ import java.time.LocalDate;
 
 public class ReservationResponse {
     private Integer id;
-    private String name;
-    private String phone;
+    private String customerName;
+    private String customerPhone;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Integer guestNumber;
+    private Integer maxOccupancy;
     private String roomType;
     private String detail;
 
-    public ReservationResponse(Integer id ,String name, String phone, LocalDate startDate, LocalDate endDate, Integer guestNumber, String roomType, String detail) {
+    public ReservationResponse() {
+    }
+
+    public ReservationResponse(Integer id, String customerName, String customerPhone,
+                               LocalDate startDate, LocalDate endDate,
+                               Integer maxOccupancy, String roomType, String detail) {
         this.id = id;
-        this.name = name;
-        this.phone = phone;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.guestNumber = guestNumber;
+        this.maxOccupancy = maxOccupancy;
         this.roomType = roomType;
         this.detail = detail;
     }
 
-    public ReservationResponse() {
 
-    }
 
     public Integer getId() {
         return id;
-
     }
 
     public void setId(Integer id) {
         this.id = id;
-
-    }
-    public String getName() {
-
-        return name;
     }
 
-    public void setName(String name) {
-
-        this.name = name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public String getPhone() {
-
-        return phone;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public void setPhone(String phone) {
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
 
-        this.phone = phone;
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
     }
 
     public LocalDate getStartDate() {
-
         return startDate;
     }
 
     public void setStartDate(LocalDate startDate) {
-
         this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {
-
         return endDate;
     }
 
     public void setEndDate(LocalDate endDate) {
-
         this.endDate = endDate;
     }
 
-    public Integer getGuestNumber() {
-
-        return guestNumber;
+    public Integer getMaxOccupancy() {
+        return maxOccupancy;
     }
 
-    public void setGuestNumber(Integer guestNumber) {
-
-        this.guestNumber = guestNumber;
+    public void setMaxOccupancy(Integer maxOccupancy) {
+        this.maxOccupancy = maxOccupancy;
     }
 
     public String getRoomType() {
-
         return roomType;
     }
 
     public void setRoomType(String roomType) {
-
         this.roomType = roomType;
     }
 
     public String getDetail() {
-
         return detail;
     }
 
     public void setDetail(String detail) {
-
         this.detail = detail;
     }
 }

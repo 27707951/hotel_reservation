@@ -4,23 +4,23 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-
 public class CheckAvailabilityRequest {
+
     @NotNull(message = "Start date is required.")
     private LocalDate startDate;
 
-    @NotNull(message = "End date is required")
+    @NotNull(message = "End date is required.")
     private LocalDate endDate;
 
-    @Min(value = 1, message = "Guest number must be at least one")
-    private Integer guestNumber;
+    @Min(value = 1, message = "Number of guests must be at least one.")
+    private Integer numberOfGuests;
 
     public CheckAvailabilityRequest() {}
 
-    public CheckAvailabilityRequest(LocalDate startDate, LocalDate endDate, int guestNumber) {
+    public CheckAvailabilityRequest(LocalDate startDate, LocalDate endDate, int numberOfGuests) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.guestNumber = guestNumber;
+        this.numberOfGuests = numberOfGuests;
     }
 
     public LocalDate getStartDate() {
@@ -39,11 +39,11 @@ public class CheckAvailabilityRequest {
         this.endDate = endDate;
     }
 
-    public int getGuestNumber() {
-        return guestNumber;
+    public int getNumberOfGuests() {
+        return numberOfGuests;
     }
 
-    public void setGuestNumber(int guestNumber) {
-        this.guestNumber = guestNumber;
+    public void setNumberOfGuests(Integer numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
     }
 }
