@@ -13,8 +13,7 @@ public class CustomerRequest {
 
     private String detail;
 
-    public CustomerRequest() {
-    }
+    public CustomerRequest() {}
 
     public CustomerRequest(String name, String phone, String detail) {
         this.name = name;
