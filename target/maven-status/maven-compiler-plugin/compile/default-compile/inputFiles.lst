@@ -5,7 +5,6 @@ C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reserv
 C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\CustomerRequest.java
 C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\ReservationResponse.java
 C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\RoomResponse.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\exception\InvaildReservationException.java
 C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\exception\NoAvailableRoomException.java
 C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\HotelReservationApplication.java
 C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\model\Customer.java

@@ -2,6 +2,7 @@ package com.example.hotel_reservation.service;
 
 import com.example.hotel_reservation.dto.RoomResponse;
 import com.example.hotel_reservation.exception.NoAvailableRoomException;
+import com.example.hotel_reservation.model.Room;
 import com.example.hotel_reservation.repository.ReservationRepository;
 import com.example.hotel_reservation.repository.RoomRepository;
 import org.springframework.data.domain.Sort;
@@ -23,35 +24,47 @@ public class RoomService {
     }
 
     public List<RoomResponse> findAvailableRooms(LocalDate startDate, LocalDate endDate) {
-        List<RoomResponse> availableRooms = roomRepository.findAvailableRooms(startDate, endDate);
-        if (availableRooms.isEmpty()) {
-            throw new NoAvailableRoomException("No rooms available for the selected dates.");
+        List<Room> rooms = roomRepository.findAvailableRooms(startDate, endDate);
+
+        if (rooms.isEmpty()) {
+            throw new NoAvailableRoomException("No rooms available for the given dates");
         }
-        return availableRooms;
+
+        return rooms.stream()
+                .map(room -> new RoomResponse(
+                        room.getId(),
+                        room.getRoomType(),
+                        room.getMaxOccupancy(),
+                        room.getPrice(),
+                        room.getImageUrl()))
+                .toList();
     }
 
     public List<RoomResponse> filterRooms(String filterBy, Integer capacity) {
-        if ("priceHighToLow".equals(filterBy)) {
-            return roomRepository.findAll(Sort.by(Sort.Direction.DESC, "price"))
-                    .stream()
-                    .map(room -> new RoomResponse(
-                            room.getId(),
-                            room.getRoomType(),
-                            room.getMaxOccupancy(),
-                            room.getPrice(),
-                            room.getImageUrl()))
-                    .toList();
-        } else if ("capacity".equals(filterBy) && capacity != null) {
-            return roomRepository.findByMaxOccupancy(capacity)
-                    .stream()
-                    .map(room -> new RoomResponse(
-                            room.getId(),
-                            room.getRoomType(),
-                            room.getMaxOccupancy(),
-                            room.getPrice(),
-                            room.getImageUrl()))
-                    .toList();
+        List<Room> rooms;
+
+        switch (filterBy) {
+            case "priceHighToLow":
+                rooms = roomRepository.findAll(Sort.by(Sort.Direction.DESC, "price"));
+                break;
+            case "capacity":
+                if (capacity != null) {
+                    rooms = roomRepository.findByMaxOccupancy(capacity);
+                } else {
+                    throw new IllegalArgumentException("Capacity must be provided when filtering by capacity");
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid filter criteria: " + filterBy);
         }
-        throw new IllegalArgumentException("Invalid filter criteria");
+
+        return rooms.stream()
+                .map(room -> new RoomResponse(
+                        room.getId(),
+                        room.getRoomType(),
+                        room.getMaxOccupancy(),
+                        room.getPrice(),
+                        room.getImageUrl()))
+                .toList();
     }
 }

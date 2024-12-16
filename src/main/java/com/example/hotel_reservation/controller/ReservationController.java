@@ -1,8 +1,6 @@
 package com.example.hotel_reservation.controller;
 
 import com.example.hotel_reservation.dto.ReservationResponse;
-import com.example.hotel_reservation.model.Customer;
-import com.example.hotel_reservation.model.Room;
 import com.example.hotel_reservation.repository.CustomerRepository;
 import com.example.hotel_reservation.repository.RoomRepository;
 import com.example.hotel_reservation.service.ReservationService;

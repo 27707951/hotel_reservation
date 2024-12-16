@@ -13,17 +13,17 @@
         <br>
         <br>
         <form id="guestForm">
-            <label for="guestname">Guest's name: </label>
+            <label for="guestname">Guest's name : </label>
             <br>
             <input type="text" id="guestname" name="guestname" required><br>
             <br>
             <br>
-            <label for="guestphone">Guest's phone number: </label>
+            <label for="guestphone">Guest's phone number : </label>
             <br>
             <input type="text" id="guestphone" name="guestphone" required><br>
             <br>
             <br>
-            <label for="othernotes">Other notes: </label>
+            <label for="othernotes">Other notes : </label>
             <br>
             <input type="text" id="othernotes" name="othernotes"><br>
             <br>
@@ -49,15 +49,14 @@
             const payload = {
                 name: guestName,
                 phone: guestPhone,
-                notes: otherNotes || null
+                detail: otherNotes || null
             };
 
             try {
-                const response = await fetch('/api/guests', {
+                document.querySelector('.submitbutton').disabled = true; // 禁用按鈕
+                const response = await fetch('/reservations/confirm', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload),
                 });
 
@@ -71,6 +70,8 @@
             } catch (error) {
                 console.error('Error saving guest information:', error);
                 alert('An error occurred while saving guest information. Please try again later.');
+            } finally {
+                document.querySelector('.submitbutton').disabled = false; // 啟用按鈕
             }
         });
     </script>
