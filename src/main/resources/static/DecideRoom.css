@@ -4,28 +4,33 @@ body{
     padding: 0;
     font-family:serif;
 }
+
 .title{
     font-size: 50px;
     text-align:center;
     font-weight: bold;
     color:#ecece7;
 }
+
 h1{
     font-size: 50px;
     text-align:center;
     font-weight: bold;
     color:#ecece7;
 }
+
 h2{
     color:#2D4457;
     text-align: center;
     font-size:large;
 }
+
 h3{
     color: #2D4457;
     text-align: center;
     font-size:50px;
 }
+
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -37,9 +42,11 @@ h3{
     width: 425px;
     height: 200px;
 }
+
 .room img:hover {
     transform: scale(1.05);
 }
+
 .borderdesign {
     display: inline-block;
     background-color: #ecece7ba;
@@ -68,6 +75,7 @@ h3{
     transition: background-color 0.3s ease;
     font-family: serif;
 }
+
 button{
     background-color: #2D4457;
     color: #ecece7;
@@ -85,6 +93,7 @@ option {
     background: #fff;
     position: absolute;
 }
+
 .parent {
     display: flex;
     justify-content: center;
