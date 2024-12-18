@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Decide Room Page</title>
+  <title>Choose a room -- CheckInn</title>
   <link rel="stylesheet" href="../static/DecideRoom.css">
+<!--  <style>-->
+<!--    .design { border: 1px solid #ddd; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 15px; }-->
+<!--    img { width: 300px; height: auto; border-radius: 5px; }-->
+<!--    button {-->
+<!--      margin-top: 10px; padding: 8px 12px; background-color: #007bff; color: #fff;-->
+<!--      border: none; border-radius: 5px; cursor: pointer;-->
+<!--    }-->
+<!--  </style>-->
 </head>
 <body>
 <br>
@@ -20,8 +28,8 @@
     <option value="4">Room for 4</option>
     <option value="6">Room for 6</option>
   </select>
-
 </div>
+
 
 <div id="loading" style="display: none;">Loading...</div>
 
@@ -29,62 +37,122 @@
 </div>
 
 <script>
-  document.getElementById('filterby').addEventListener('change', async function () {
-    const selectedValue = this.value;
+  document.addEventListener('DOMContentLoaded', async () => {
+    const params = new URLSearchParams(window.location.search);
+    const startDate = params.get('startDate');
+    const endDate = params.get('endDate');
+    const numberOfGuests = params.get('numberOfGuests');
+
     const roomContainer = document.getElementById('roomContainer');
     const loading = document.getElementById('loading');
 
     try {
-      loading.style.display = 'block';
-      roomContainer.innerHTML = '';
+      loading.style.display = 'block'; // 顯示加載中提示
 
-      const payload = { filterBy: selectedValue };
-
-      const apiUrl = '/api/rooms/filter';
-      const response = await fetch(apiUrl, {
+      // 構建後端請求 URL
+      const url = 'http://localhost:8080/api/rooms/check-availability';
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          startDate: startDate,
+          endDate: endDate,
+          numberOfGuests: numberOfGuests
+        })
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch data from server');
+        const errorText = await response.text();
+        throw new Error(`Error ${response.status}: ${errorText}`);
       }
 
       const rooms = await response.json();
       loading.style.display = 'none';
 
-      if (rooms.length === 0) {
-        window.location.href = 'NoRoomAvailable.html'; // 無房間時跳轉
+      if (!rooms || rooms.length === 0) {
+        roomContainer.innerHTML = '<p>No rooms available for the selected dates.</p>';
         return;
       }
 
-      rooms.forEach(room => {
-        const roomCard = `
-        <div class="gallery">
-          <div class="borderdesign">
-          <div class="room">
-            <a href="EnterInfo.html">
-              <img src="${room.imageUrl}" alt="${room.name}">
-            </a>
-            <h2>${room.name}<br>
-              Room Capacity : ${room.capacity} guests<br>
-              Room Price/ night : $${room.price}
-            </h2>
-          </div>
-          </div>
-        </div>
-      `;
-        roomContainer.insertAdjacentHTML('beforeend', roomCard);
-      });
+      displayRooms(rooms, startDate, endDate, numberOfGuests);
 
     } catch (error) {
       console.error('Error fetching room data:', error);
-      alert('Failed to load rooms. Please try again later.');
+      alert(`Failed to load rooms: ${error.message}`);
       loading.style.display = 'none';
     }
   });
 
+  function displayRooms(rooms, startDate, endDate, numberOfGuests) {
+    const roomContainer = document.getElementById('roomContainer');
+    roomContainer.innerHTML = ''; // 清空現有內容
+
+    rooms.forEach(room => {
+      const roomCard = `
+  <div class="gallery">
+    <div class="borderdesign">
+        <div class="room">
+        <div class="borderdesign">
+          <img src="${room.imageUrl}" alt="${room.roomType}">
+          <h3>${room.roomType}</h3>
+          <h2>Max Occupancy: ${room.maxOccupancy}</h2>
+          <h2>Price: $${room.price} / night</h2>
+          <div class="parent"><button onclick="selectRoom('${room.id}', '${room.roomType}', ${room.price}, ${room.maxOccupancy}, '${room.imageUrl}', '${startDate}', '${endDate}', ${numberOfGuests})">
+            Select This Room
+          </button></div>
+        </div>
+      `;
+      roomContainer.insertAdjacentHTML('beforeend', roomCard);
+    });
+  }
+
+  function selectRoom(id, roomType, price, maxOccupancy, imageUrl, startDate, endDate, numberOfGuests) {
+    const queryParams = new URLSearchParams({
+      roomId: id,
+      roomType: roomType,
+      price: price,
+      maxOccupancy: maxOccupancy,
+      imageUrl: imageUrl,
+      startDate: startDate,
+      endDate: endDate,
+      numberOfGuests: numberOfGuests
+    }).toString();
+
+    window.location.href = `EnterInfo.html?${queryParams}`;
+  }
+
+  document.getElementById("filterby").addEventListener("change", function () {
+    const selectedValue = this.value; // 獲取當前選中的 option 值
+    let alertMessage;
+
+    switch (selectedValue) {
+      case "noFilter":
+        alertMessage = "Showing all rooms.";
+        break;
+      case "priceHighToLow":
+        alertMessage = "Sorting by price from high to low.";
+        break;
+      case "priceLowToHigh":
+        alertMessage = "Sorting by price from low to high.";
+        break;
+      case "2":
+        alertMessage = "Showing rooms for 2 people.";
+        break;
+      case "4":
+        alertMessage = "Showing rooms for 4 people.";
+        break;
+      case "6":
+        alertMessage = "Showing rooms for 6 people.";
+        break;
+      default:
+        alertMessage = "Invalid selection.";
+    }
+
+    alert(alertMessage); // 顯示 alert 訊息
+  });
+
 </script>
+</body>
+</html>
 </body>
 </html>

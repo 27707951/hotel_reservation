@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Check Info</title>
+  <title>Check the validity of the information -- CheckInn</title>
   <link rel="stylesheet" href="../static/HotelReservationSystem.css">
 </head>
 <body>
 <p class="title">Hotel Reservation System</p>
 <h2>please check the information with the guest</h2>
 <div class="result2">
-  <br>
-  <h3>Guest's name:
-    <br>
-    <br>Guest's phone number:
-    <br>
-    <br>Guest's desired check-in and check-out dates:
-    <br>
-    <br>Number of guest:
-    <br>
-    <br>Type of room:
-    <br>
-    <br> Other notes:
+  <h3>
+    Guest's name: <span id="guestName"></span><br><br>
+    Guest's phone number: <span id="guestPhone"></span><br><br>
+    Guest's desired check-in and check-out dates: <span id="guestDates"></span><br><br>
+    Number of guest: <span id="guestCount"></span><br><br>
+    Type of room: <span id="roomType"></span><br><br>
+    Other notes: <span id="guestNotes"></span>
   </h3>
 </div>
 
@@ -28,9 +23,121 @@
 <br>
 <div class="option-container">
   <!--如果資料正確，連結到ReservationSuccess頁面-->
-    <a href="ReservationSuccess.html"><button class="submitbutton"><span class="button-text2">Save Information</span></button>
+    <a href="ReservationSuccess.html" style = "text-decoration: none "><button class="submitbutton"><span class="button-text2">Save Information</span></button>
     </a>
   <!--如果資料不正確，連結到Wronginfo頁面-->
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+
+    // 解析 URL 中的資訊
+    const roomType = params.get('roomType') || 'N/A';
+    const roomID = params.get('roomID') || '0';
+    const startDate = params.get('startDate') || 'N/A';
+    const endDate = params.get('endDate') || 'N/A';
+    const guestCount = params.get('numberOfGuests') || '0';
+    const guestName = params.get('guestName') || 'N/A';
+    const guestPhone = params.get('guestPhone') || 'N/A';
+    const guestNotes = params.get('notes') || 'None';
+
+    // 將資訊填充到頁面元素中
+    document.getElementById('roomType').textContent = roomType;
+    document.getElementById('guestDates').textContent = `${startDate} to ${endDate}`;
+    document.getElementById('guestCount').textContent = guestCount;
+    document.getElementById('guestName').textContent = guestName;
+    document.getElementById('guestPhone').textContent = guestPhone;
+    document.getElementById('guestNotes').textContent = guestNotes;
+
+    // 儲存參數到全域變數
+    /*window.reservationData = {
+      ID: parseInt(guestCount),          // 訂單編號，這裡用 numberOfGuests 替代
+      customerID: parseInt(customerID),                     // 範例固定為 1，若有實際值則替換
+      roomID: parseInt(roomID),
+      startDate: startDate,
+      endDate: endDate,
+      detail: guestNotes
+    };*/
+    window.reservationData = {
+      customerName: guestName,       // 從 URL 取得
+      customerPhone: guestPhone,     // 從 URL 取得
+      roomType: roomType,            // 從 URL 取得
+      startDate: startDate,
+      endDate: endDate,
+      detail: guestNotes
+    };
+
+  });
+
+  /*function confirmReservation() {
+    // 發送 POST 請求將資料寫入後端
+    fetch('http://localhost:8080/reservations/confirm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(window.reservationData)
+    })
+            .then(response => {
+              if (response.ok) {
+                alert('Reservation confirmed!');
+                window.location.href = 'HomePage.html';
+              } else {
+                alert('Failed to save reservation data.');
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert('An error occurred while saving the reservation.');
+            });
+  }*/
+
+  //12/18
+  async function confirmReservation() {
+    try {
+      // Step 1: 查詢 customerId
+      const customerResponse = await fetch(
+              `http://localhost:8080/reservations/findCustomer?name=${encodeURIComponent(window.reservationData.customerName)}&phone=${encodeURIComponent(window.reservationData.customerPhone)}`
+      );
+      const customerData = await customerResponse.json();
+      if (!customerData.id) throw new Error("Customer not found");
+
+      // Step 2: 查詢 roomId
+      const roomResponse = await fetch(
+              `http://localhost:8080/reservations/findRoom?type=${encodeURIComponent(window.reservationData.roomType)}`
+      );
+      const roomData = await roomResponse.json();
+      if (!roomData.id) throw new Error("Room not found");
+
+      // Step 3: 構建完整的 payload
+      const payload = {
+        customerID: customerData.id,
+        roomID: roomData.id,
+        startDate: window.reservationData.startDate,
+        endDate: window.reservationData.endDate,
+        detail: window.reservationData.detail,
+      };
+
+      // Step 4: 發送 POST 請求到後端 /confirm 介面
+      const response = await fetch('http://localhost:8080/reservations/confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        alert('Reservation confirmed!');
+        window.location.href = 'HomePage.html';
+      } else {
+        alert('Failed to save reservation data.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while saving the reservation.');
+    }
+  }
+
+
+</script>
 </div>
 </body>
 </html>

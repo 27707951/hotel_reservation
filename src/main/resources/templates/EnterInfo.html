@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/HotelReservationSystem.css">
-    <title>Enter Info</title>
+    <title>Enter Information of the Guest -- CheckInn</title>
 </head>
 <body>
 <h1>Hotel Reservation System</h1>
@@ -13,24 +13,24 @@
     <br>
     <br>
     <form id="guestForm">
-        <label for="guestname">Guest's name : </label>
+        <label for="guestname">Guest's name: </label>
         <br>
         <input type="text" id="guestname" name="guestname" required><br>
         <br>
         <br>
-        <label for="guestphone">Guest's phone number : </label>
+        <label for="guestphone">Guest's phone number: </label>
         <br>
-        <input type="text" id="guestphone" name="guestphone" required><br>
+        <input type="text" id="guestphone" name="guestphone" placeholder="09xxxxxxxx"
+               pattern="\d{10}" maxlength="10" required><br>
         <br>
         <br>
-        <label for="othernotes">Other notes : </label>
+        <label for="othernotes">Other notes: </label>
         <br>
         <input type="text" id="othernotes" name="othernotes"><br>
         <br>
         <br>
         <br>
-        <a href="CheckInfo.html" style = "text-decoration: none "><button class="submitbutton"><span class="button-text2">Send Information</span></button>
-        </a>
+        <button type="submit" class="submitbutton"><span class="button-text2">Save information</span></button>
     </form>
     <br/>
 </h2>
@@ -46,7 +46,26 @@
             alert('Guest name and phone number are required.');
             return;
         }
+        const params = new URLSearchParams(window.location.search);
+        const roomID = params.get('roomId');
+        const roomType = params.get('roomType');
+        const startDate = params.get('startDate');
+        const endDate = params.get('endDate');
+        const numberOfGuests = params.get('numberOfGuests');
 
+        // 構建完整的參數列表
+        const queryParams = new URLSearchParams({
+            guestName: guestName,
+            guestPhone: guestPhone,
+            notes: otherNotes,
+            roomID: roomID,
+            roomType: roomType,
+            startDate: startDate,
+            endDate: endDate,
+            numberOfGuests: numberOfGuests
+        }).toString();
+
+        // 構建要傳送給後端的資料
         const payload = {
             name: guestName,
             phone: guestPhone,
@@ -55,7 +74,7 @@
 
         try {
             document.querySelector('.submitbutton').disabled = true; // 禁用按鈕
-            const response = await fetch('/reservations/confirm', {
+            const response = await fetch('http://localhost:8080/customers', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -63,7 +82,8 @@
 
             if (response.ok) {
                 alert('Guest information saved successfully!');
-                window.location.href = 'CheckInfo.html';
+                // 跳轉到 CheckInfo.html 並攜帶參數
+                window.location.href = `CheckInfo.html?${queryParams}`;
             } else {
                 const errorText = await response.text();
                 alert(`Failed to save guest information: ${errorText}`);
@@ -75,6 +95,7 @@
             document.querySelector('.submitbutton').disabled = false; // 啟用按鈕
         }
     });
+
 </script>
 </body>
 </html>
