@@ -8,7 +8,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer ID;
 
     private String name;
     private String phone;
@@ -16,17 +16,17 @@ public class Customer {
     public Customer() {}
 
     public  Customer(Integer id, String name, String phone) {
-        this.id = id;
+        this.ID = id;
         this.name = name;
         this.phone = phone;
     }
 
     public Integer getId() {
-        return id;
+        return ID;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.ID = id;
     }
 
     public String getName(){

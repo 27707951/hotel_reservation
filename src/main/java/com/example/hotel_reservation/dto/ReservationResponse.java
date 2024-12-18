@@ -11,6 +11,8 @@ public class ReservationResponse {
     private Integer maxOccupancy;
     private String roomType;
     private String detail;
+    private Integer customerId;
+    private Integer roomId;
 
     public ReservationResponse() {
     }
@@ -28,7 +30,11 @@ public class ReservationResponse {
         this.detail = detail;
     }
 
+    public Integer getCustomerId() { return customerId; }
+    public void setCustomerId(Integer customerId) { this.customerId = customerId; }
 
+    public Integer getRoomId() { return roomId; }
+    public void setRoomId(Integer roomId) { this.roomId = roomId; }
 
     public Integer getId() {
         return id;
