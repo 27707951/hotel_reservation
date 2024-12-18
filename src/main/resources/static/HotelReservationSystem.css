@@ -6,7 +6,6 @@
     width: 100%;
 }
 
-
 .content-container {
     display: flex;
     flex-direction: column;
@@ -16,7 +15,6 @@
     background-color: #819DB2;
 }
 
-
 .content-container h1 {
     color: #2d4457;
     font-size: 70px;
@@ -24,21 +22,15 @@
     margin: 20px 0;
 }
 
-
 .content-container .submitbutton {
     margin-top: 20px;
-
-
 }
-
 
 form {
     font-family: serif;
     font-size: 15px;
     color:#ecece7
-
 }
-
 
 p {
     font-size: 30px;
@@ -46,18 +38,15 @@ p {
     margin-bottom: 3px;
 }
 
-
 label {
     margin-left: 30px;
     font-size: 20px;
 }
 
-
 select {
     font-family: serif;
     font-size: 18px;
     color:#819db2;
-
     margin: 5px 0;
     background-color: #FFFFFF;
     border: 1px solid #ecece7;
@@ -66,28 +55,23 @@ select {
     box-shadow: 0 2px 3px 0 rgba(255,255,255,1);
 }
 
-
 input[type="number"] {
     font-family: serif;
-    font-size: 18px; /* 與 select 一致 */
-    color: #819db2; /* 與 select 一致 */
-    margin: 3px 0; /* 與 select 一致 */
-    background-color: #FFFFFF; /* 與 select 一致 */
-    border: 1px solid #ecece7; /* 與 select 一致 */
-    padding: 0 8px; /* 與 select 一致 */
-    letter-spacing: 1px; /* 與 select 一致 */
-    box-shadow: 0 2px 3px 0 rgba(255,255,255,1); /* 與 select 一致 */
-
-    /* 從原來的樣式中保留這些特定的設定 */
+    font-size: 18px;
+    color: #819db2;
+    margin: 3px 0;
+    background-color: #FFFFFF;
+    border: 1px solid #ecece7;
+    padding: 0 8px;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 3px 0 rgba(255,255,255,1);
     height: 30px;
-    width: 200px; /* 保持原來的寬度，但可以根據需要調整 */
-    border-radius: 0; /* 保持原來的邊框半徑 */
-    outline: 0; /* 保持原來的外框設定 */
-    text-align: center;/* 保持居中對齊 */
+    width: 200px;
+    border-radius: 0;
+    outline: 0;
+    text-align: center;
 }
 
-
-/* 去除自增減箭頭，適用於某些瀏覽器 */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -96,13 +80,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"]::placeholder {
     color: #819db2;
-    opacity: 1; /* 確保在某些瀏覽器中顏色不會變淡 */
+    opacity: 1;
     text-align: center;
 }
 
-
 input[type="number"] {
-    -moz-appearance: textfield; /* 針對 Firefox */
+    -moz-appearance: textfield;
 }
 
 .container {
@@ -111,23 +94,19 @@ input[type="number"] {
     flex-wrap: wrap;
 }
 
-
 .item {
-    flex: 1 1 200px; /* 預設寬度為200px，當空間足夠時會彈性擴展 */
+    flex: 1 1 200px;
 }
-
 
 body{
     display : flex;
     flex-direction : column;
     align-items: center;
-
     background-color:#819DB2;
     font-family:serif;
     margin: 0;
     padding: 0;
 }
-
 
 .title{
     font-size: 50px;
@@ -136,7 +115,6 @@ body{
     color:#ecece7;
 }
 
-
 h1{
     font-size: 60px;
     text-align:center;
@@ -144,13 +122,11 @@ h1{
     color:#ecece7;
 }
 
-
 h2{
     color: #ecece7;
     text-align: center;
     font-size:large;
 }
-
 
 h3{
     color: #1c2a37;
@@ -166,7 +142,6 @@ div.result{
     margin: 20px;
 }
 
-
 div.result2 {
     background-color: #d1dce4;
     height: auto;
@@ -178,15 +153,12 @@ div.result2 {
     padding: 20px;
 }
 
-
-
 div.result2 h3{
     color: #2D4457;
     text-align: left;
     padding-left: 30px;
     font-size:25px;
 }
-
 
 div.alert{
     background-color: #D1DCE4;
@@ -197,7 +169,6 @@ div.alert{
     height: fit-content;
 }
 
-
 div.alert h3 {
     color: #2D4457;
     font-size: 50px;
@@ -205,9 +176,7 @@ div.alert h3 {
     font-family: serif;
 }
 
-
 input[type="text"]{
-
     text-align: center;
     height: 45px ;
     width: 400px ;
@@ -220,7 +189,6 @@ input[type="text"]{
     font-weight: 600;
     background:#FFFFFF;
     box-shadow: 0 2px 3px 0 rgba(255,255,255,1);
-    /*-webkit-appearance: none;*/
 }
 
 .submitbutton{
@@ -232,13 +200,10 @@ input[type="text"]{
     font-size: 30px;
     border-radius: 30px;
     font-family: serif;
-
     margin: 0 auto;
     text-align: center;
     display: block;
-
 }
-
 
 .submitbutton2{
     background-color: #2D4457;
@@ -251,13 +216,9 @@ input[type="text"]{
     font-family: serif;
 }
 
-
-
-
 .option-container {
     text-align: center;
 }
-
 
 .option {
     background-color:#ecece7;
@@ -269,16 +230,6 @@ input[type="text"]{
     font-family: serif;
 }
 
-
-/*.button-text{
-font-size: 30px;
-color:#2D4457;
-font-weight: bold;
-text-shadow:2px 2px 5px rgba(0, 0, 0, 0.5);
-font-family:serif;
-}*/
-
-
 .button-text2{
     font-size: 30px;
     color:#2D4457;
@@ -287,7 +238,6 @@ font-family:serif;
     text-align:center;
     text-decoration: none;
 }
-
 
 .button-text3{
     font-size: 20px;
@@ -310,5 +260,3 @@ h2 label{
     font-size: 30px;
     font-weight: normal;
 }
-
-
