@@ -61,7 +61,8 @@
 
       rooms.forEach(room => {
         const roomCard = `
-        <div class="design">
+        <div class="gallery">
+          <div class="borderdesign">
           <div class="room">
             <a href="EnterInfo.html">
               <img src="${room.imageUrl}" alt="${room.name}">
@@ -70,6 +71,7 @@
               Room Capacity : ${room.capacity} guests<br>
               Room Price/ night : $${room.price}
             </h2>
+          </div>
           </div>
         </div>
       `;
