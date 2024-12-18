@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +7,19 @@
     <title>Enter Info</title>
 </head>
 <body>
-    <h1>Hotel Reservation System</h1>
-    <h2>Room available, please enter guest's information</h2>
-    <h2>
+<h1>Hotel Reservation System</h1>
+<h2>Room available, please enter guest's information</h2>
+<h2>
+    <br>
+    <br>
+    <form id="guestForm">
+        <label for="guestname">Guest's name : </label>
+        <br>
+        <input type="text" id="guestname" name="guestname" required><br>
         <br>
         <br>
-        <form id="guestForm">
-            <label for="guestname">Guest's name: </label>
-            <br>
-            <input type="text" id="guestname" name="guestname" required><br>
-            <br>
-            <br>
+
+
             <label for="guestphone">Guest's phone number: </label>
             <br>
             <input type="text" id="guestphone" name="guestphone" placeholder="09xxxxxxxx"
@@ -38,14 +40,38 @@
         document.getElementById('guestForm').addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            const guestName = document.getElementById('guestname').value.trim();
-            const guestPhone = document.getElementById('guestphone').value.trim();
-            const otherNotes = document.getElementById('othernotes').value.trim();
 
-            if (!guestName || !guestPhone) {
-                alert('Guest name and phone number are required.');
-                return;
+        const guestName = document.getElementById('guestname').value.trim();
+        const guestPhone = document.getElementById('guestphone').value.trim();
+        const otherNotes = document.getElementById('othernotes').value.trim();
+
+        if (!guestName || !guestPhone) {
+            alert('Guest name and phone number are required.');
+            return;
+        }
+
+        const payload = {
+            name: guestName,
+            phone: guestPhone,
+            detail: otherNotes || null
+        };
+
+        try {
+            document.querySelector('.submitbutton').disabled = true; // 禁用按鈕
+            const response = await fetch('/reservations/confirm', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                alert('Guest information saved successfully!');
+                window.location.href = 'CheckInfo.html';
+            } else {
+                const errorText = await response.text();
+                alert(`Failed to save guest information: ${errorText}`);
             }
+
             const params = new URLSearchParams(window.location.search);
             const roomID = params.get('roomId');
             const roomType = params.get('roomType');
@@ -94,8 +120,9 @@
             } finally {
                 document.querySelector('.submitbutton').disabled = false; // 啟用按鈕
             }
-        });
+        }};
 
     </script>
+
 </body>
 </html>

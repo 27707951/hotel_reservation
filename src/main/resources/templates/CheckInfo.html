@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Reservation Success</title>
+  <title>Check Info</title>
   <link rel="stylesheet" href="../static/HotelReservationSystem.css">
 </head>
 <body>
@@ -18,14 +18,14 @@
     Other notes: <span id="guestNotes"></span>
   </h3>
 </div>
-<br><br>
+
+<br>
+<br>
 <div class="option-container">
-  <button class="submitbutton2" onclick="window.location.href='EnterInfo.html'">
-    <span class="button-text3">MODIFY</span>
-  </button>
-  <button class="submitbutton" onclick="confirmReservation()">
-    <span class="button-text2">CONFIRM and return to home page</span>
-  </button>
+  <!--如果資料正確，連結到ReservationSuccess頁面-->
+    <a href="ReservationSuccess.html"><button class="submitbutton"><span class="button-text2">Save Information</span></button>
+    </a>
+  <!--如果資料不正確，連結到Wronginfo頁面-->
 </div>
 
 <script>
@@ -139,5 +139,6 @@
 
 
 </script>
+</div>>
 </body>
 </html>
