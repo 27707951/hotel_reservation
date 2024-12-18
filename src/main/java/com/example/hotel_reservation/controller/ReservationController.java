@@ -2,6 +2,7 @@ package com.example.hotel_reservation.controller;
 
 import com.example.hotel_reservation.dto.ReservationResponse;
 import com.example.hotel_reservation.model.Customer;
+import com.example.hotel_reservation.model.Reservation;
 import com.example.hotel_reservation.model.Room;
 import com.example.hotel_reservation.repository.CustomerRepository;
 import com.example.hotel_reservation.repository.RoomRepository;
@@ -50,31 +51,29 @@ public class ReservationController {
     @PostMapping("/confirm")
     public ResponseEntity<?> confirmReservation(@RequestBody ReservationResponse response) {
         try {
-            // 驗證輸入
-            if (response.getCustomerName() == null || response.getCustomerPhone() == null || response.getRoomType() == null) {
+            // 改用 ID 檢查
+            if (response.getCustomerId() == null || response.getRoomId() == null ||
+                    response.getStartDate() == null || response.getEndDate() == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input data.");
             }
 
-            // 查找 customerID
-            Optional<Customer> customerOpt = customerRepository.findByNameAndPhone(response.getCustomerName(), response.getCustomerPhone());
-            if (customerOpt.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer not found.");
-            }
-            Integer customerID = customerOpt.get().getId();
+            // 透過 customerId 直接找 Customer
+            Customer customer = customerRepository.findById(response.getCustomerId())
+                    .orElseThrow(() -> new IllegalArgumentException("Customer not found."));
 
-            // 查找 roomID
-            Optional<Room> roomOpt = roomRepository.findByRoomType(response.getRoomType());
-            if (roomOpt.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Room not found.");
-            }
-            Integer roomID = roomOpt.get().getId();
+            // 透過 roomId 直接找 Room
+            Room room = roomRepository.findById(response.getRoomId())
+                    .orElseThrow(() -> new IllegalArgumentException("Room not found."));
 
-            // 更新 response 的 ID 值
-            response.setCustomerId(customerID);
-            response.setRoomId(roomID);
+            // 呼叫 service 儲存資料
+            Reservation savedReservation = reservationService.saveReservation(
+                    response.getCustomerId(),
+                    response.getRoomId(),
+                    response.getStartDate(),
+                    response.getEndDate(),
+                    response.getDetail()
+            );
 
-            // 呼叫 service 層進行儲存
-            ReservationResponse savedReservation = reservationService.saveReservation(response, customerID, roomID);
             return ResponseEntity.ok(savedReservation);
 
         } catch (IllegalArgumentException e) {
