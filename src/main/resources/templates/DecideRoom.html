@@ -14,31 +14,27 @@
 <!--    }-->
 <!--  </style>-->
 </head>
-<body><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Decide Room</title>
-<!--  <style>-->
-<!--    body { font-family: Arial, sans-serif; margin: 20px; }-->
-<!--    .gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;}-->
-<!--    .room { border: 1px solid #ddd; padding: 10px; border-radius: 5px; text-align: center;-->
-<!--      box-shadow: 0 4px 8px rgba(0,0,0,0.2);}-->
-<!--    img { width: 600px; height: 400px; border-radius: 10px; margin-bottom: 10px}-->
-<!--    button {-->
-<!--      margin-top: 10px; padding: 8px 12px; background-color: #007bff; color: #fff;-->
-<!--      border: none; border-radius: 5px; cursor: pointer;-->
-<!--    }-->
-<!--    button:hover {-->
-<!--      background-color: #0056b3; /* 按鈕懸停效果 */-->
-<!--    }-->
-<!--  </style>-->
-</head>
 <body>
-<h1>Available Rooms</h1>
+<br>
+<div class="title">Hotel Reservation System</div>
+<h2>Please Choose a Desired Room</h2>
+
+<div class="news-filter">
+  <select name="filterby" id="filterby">
+    <option value="noFilter">All rooms</option>
+    <option value="priceHighToLow">Price from high to low</option>
+    <option value="priceLowToHigh">Price from low to high</option>
+    <option value="2">Room for 2</option>
+    <option value="4">Room for 4</option>
+    <option value="6">Room for 6</option>
+  </select>
+</div>
+
+
 <div id="loading" style="display: none;">Loading...</div>
-<div class="gallery" id="roomContainer"></div>
+
+<div class="gallery" id="roomContainer">
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
@@ -93,14 +89,17 @@
 
     rooms.forEach(room => {
       const roomCard = `
+  <div class="gallery">
+    <div class="borderdesign">
         <div class="room">
+        <div class="borderdesign">
           <img src="${room.imageUrl}" alt="${room.roomType}">
           <h3>${room.roomType}</h3>
-          <p>Max Occupancy: ${room.maxOccupancy}</p>
-          <p>Price: $${room.price} / night</p>
-          <button onclick="selectRoom('${room.id}', '${room.roomType}', ${room.price}, ${room.maxOccupancy}, '${room.imageUrl}', '${startDate}', '${endDate}', ${numberOfGuests})">
+          <h2>Max Occupancy: ${room.maxOccupancy}</h2>
+          <h2>Price: $${room.price} / night</h2>
+          <div class="parent"><button onclick="selectRoom('${room.id}', '${room.roomType}', ${room.price}, ${room.maxOccupancy}, '${room.imageUrl}', '${startDate}', '${endDate}', ${numberOfGuests})">
             Select This Room
-          </button>
+          </button></div>
         </div>
       `;
       roomContainer.insertAdjacentHTML('beforeend', roomCard);
@@ -121,6 +120,37 @@
 
     window.location.href = `EnterInfo.html?${queryParams}`;
   }
+
+  document.getElementById("filterby").addEventListener("change", function () {
+    const selectedValue = this.value; // 獲取當前選中的 option 值
+    let alertMessage;
+
+    switch (selectedValue) {
+      case "noFilter":
+        alertMessage = "Showing all rooms.";
+        break;
+      case "priceHighToLow":
+        alertMessage = "Sorting by price from high to low.";
+        break;
+      case "priceLowToHigh":
+        alertMessage = "Sorting by price from low to high.";
+        break;
+      case "2":
+        alertMessage = "Showing rooms for 2 people.";
+        break;
+      case "4":
+        alertMessage = "Showing rooms for 4 people.";
+        break;
+      case "6":
+        alertMessage = "Showing rooms for 6 people.";
+        break;
+      default:
+        alertMessage = "Invalid selection.";
+    }
+
+    alert(alertMessage); // 顯示 alert 訊息
+  });
+
 </script>
 </body>
 </html>
