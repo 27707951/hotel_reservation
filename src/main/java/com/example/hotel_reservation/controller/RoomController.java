@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:63342")  // 允許來自 63342 的請求
+@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 @RequestMapping("/api/rooms")
 public class RoomController {

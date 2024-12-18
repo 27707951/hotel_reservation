@@ -51,21 +51,17 @@ public class ReservationController {
     @PostMapping("/confirm")
     public ResponseEntity<?> confirmReservation(@RequestBody ReservationResponse response) {
         try {
-            // 改用 ID 檢查
             if (response.getCustomerId() == null || response.getRoomId() == null ||
                     response.getStartDate() == null || response.getEndDate() == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input data.");
             }
 
-            // 透過 customerId 直接找 Customer
             Customer customer = customerRepository.findById(response.getCustomerId())
                     .orElseThrow(() -> new IllegalArgumentException("Customer not found."));
 
-            // 透過 roomId 直接找 Room
             Room room = roomRepository.findById(response.getRoomId())
                     .orElseThrow(() -> new IllegalArgumentException("Room not found."));
 
-            // 呼叫 service 儲存資料
             Reservation savedReservation = reservationService.saveReservation(
                     response.getCustomerId(),
                     response.getRoomId(),

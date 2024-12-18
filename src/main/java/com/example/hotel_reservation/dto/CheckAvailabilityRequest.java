@@ -8,11 +8,11 @@ import java.time.LocalDate;
 public class CheckAvailabilityRequest {
 
     @NotNull(message = "Start date is required.")
-    @JsonFormat(pattern = "yyyy-MM-dd")  // 指定日期格式
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @NotNull(message = "End date is required.")
-    @JsonFormat(pattern = "yyyy-MM-dd")  // 指定日期格式
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     @Min(value = 1, message = "Number of guests must be at least one.")

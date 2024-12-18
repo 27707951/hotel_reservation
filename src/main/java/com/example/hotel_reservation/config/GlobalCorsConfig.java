@@ -13,11 +13,11 @@ public class GlobalCorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // 匹配所有端點
-                        .allowedOrigins("http://localhost:63342") // 允許的前端來源
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 支援的 HTTP 方法
-                        .allowedHeaders("*") // 允許的請求 Header
-                        .allowCredentials(true); // 允許 Cookies 和認證資訊
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:63342")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }

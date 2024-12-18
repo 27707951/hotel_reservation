@@ -28,13 +28,12 @@ public class ReservationService {
     }
 
     public Reservation saveReservation(Integer customerID, Integer roomID, LocalDate startDate, LocalDate endDate, String detail) {
-        // 驗證 Customer 和 Room 是否存在
+
         Customer customer = customerRepository.findById(customerID)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found."));
         Room room = roomRepository.findById(roomID)
                 .orElseThrow(() -> new IllegalArgumentException("Room not found."));
 
-        // 建立 Reservation 實體並填充欄位
         Reservation reservation = new Reservation();
         reservation.setCustomer(customer);
         reservation.setRoom(room);
@@ -42,7 +41,6 @@ public class ReservationService {
         reservation.setEndDate(endDate);
         reservation.setDetail(detail);
 
-        // 儲存到資料庫
         return reservationRepository.save(reservation);
     }
 }

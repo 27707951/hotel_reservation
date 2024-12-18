@@ -17,7 +17,6 @@ public class RoomService {
     private final RoomRepository roomRepository;
     private final ReservationRepository reservationRepository;
 
-    // 使用構造函數注入兩個 Repository
     public RoomService(RoomRepository roomRepository, ReservationRepository reservationRepository) {
         this.roomRepository = roomRepository;
         this.reservationRepository = reservationRepository;

@@ -1,28 +1,50 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Reservation Succeeded -- CheckInn</title>
-    <link rel="stylesheet" href= "../static/HotelReservationSystem.css">
+    <meta charset="UTF-8">
+    <title>Reservation Success</title>
+    <link rel="stylesheet" href="../static/HotelReservationSystem.css">
 </head>
 <body>
-<p class="title">Room Reservation Successful</p>
+<p class="title">Hotel Reservation System</p>
+<h2>Reservation Success!</h2>
 <div class="result2">
-    <br>
-    <h3>Guest's name:</h3>
-    <h3>Guest's phone number:</h3>
-    <h3>Guest's desired check-in and check-out dates:</h3>
-    <h3>Number of guest:</h3>
-    <h3>Type of room:</h3>
-    <h3>Other notes:</h3>
+    <h3>
+        Guest's name: <span id="guestName"></span><br><br>
+        Guest's phone number: <span id="guestPhone"></span><br><br>
+        Guest's desired check-in and check-out dates: <span id="guestDates"></span><br><br>
+        Number of guest: <span id="numberOfGuests"></span><br><br>
+        Type of room: <span id="roomType"></span><br><br>
+        Other notes: <span id="guestNotes"></span>
+    </h3>
 </div>
-<br>
-<br>
 <div class="option-container">
     <br>
     <br>
     <a href="HomePage.html"><button class="submitbutton2"><span class="button-text3">Return to home page</span></button>
     </a>
-    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const guestName = params.get('guestName') || 'N/A';
+        const guestPhone = params.get('guestPhone') || 'N/A';
+        const startDate = params.get('startDate') || 'N/A';
+        const endDate = params.get('endDate') || 'N/A';
+        const roomType = params.get('roomType') || 'N/A';
+        const notes = params.get('notes') || 'None';
+        const numberOfGuests = params.get('numberOfGuests') || 'N/A';
+
+        document.getElementById('guestName').textContent = guestName;
+        document.getElementById('guestPhone').textContent = guestPhone;
+        document.getElementById('guestDates').textContent = `${startDate} to ${endDate}`;
+        document.getElementById('roomType').textContent = roomType;
+        document.getElementById('guestNotes').textContent = notes;
+        document.getElementById('numberOfGuests').textContent = numberOfGuests;
+    });
+
+</script>
 </body>
 </html>
