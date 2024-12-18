@@ -13,17 +13,18 @@
         <br>
         <br>
         <form id="guestForm">
-            <label for="guestname">Guest's name : </label>
+            <label for="guestname">Guest's name: </label>
             <br>
             <input type="text" id="guestname" name="guestname" required><br>
             <br>
             <br>
-            <label for="guestphone">Guest's phone number : </label>
+            <label for="guestphone">Guest's phone number: </label>
             <br>
-            <input type="text" id="guestphone" name="guestphone" required><br>
+            <input type="text" id="guestphone" name="guestphone" placeholder="09xxxxxxxx"
+                   pattern="\d{10}" maxlength="10" required><br>
             <br>
             <br>
-            <label for="othernotes">Other notes : </label>
+            <label for="othernotes">Other notes: </label>
             <br>
             <input type="text" id="othernotes" name="othernotes"><br>
             <br>
@@ -54,7 +55,7 @@
 
             try {
                 document.querySelector('.submitbutton').disabled = true; // 禁用按鈕
-                const response = await fetch('/reservations/confirm', {
+                const response = await fetch('http://localhost:8080/customers', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload),

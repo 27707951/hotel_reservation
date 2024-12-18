@@ -1,5 +1,6 @@
 package com.example.hotel_reservation.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -7,9 +8,11 @@ import java.time.LocalDate;
 public class CheckAvailabilityRequest {
 
     @NotNull(message = "Start date is required.")
+    @JsonFormat(pattern = "yyyy-MM-dd")  // 指定日期格式
     private LocalDate startDate;
 
     @NotNull(message = "End date is required.")
+    @JsonFormat(pattern = "yyyy-MM-dd")  // 指定日期格式
     private LocalDate endDate;
 
     @Min(value = 1, message = "Number of guests must be at least one.")

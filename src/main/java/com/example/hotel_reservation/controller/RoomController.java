@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:63342")  // 允許來自 63342 的請求
 @RestController
 @RequestMapping("/api/rooms")
 public class RoomController {
@@ -21,7 +22,8 @@ public class RoomController {
     @PostMapping("/check-availability")
     public ResponseEntity<?> checkRoomAvailability(@RequestBody CheckAvailabilityRequest request) {
         try {
-            List<RoomResponse> availableRooms = roomService.findAvailableRooms(request.getStartDate(), request.getEndDate());
+            List<RoomResponse> availableRooms = roomService.findAvailableRooms(request.getStartDate(), request.getEndDate(), request.getNumberOfGuests());
+            System.out.println("Available rooms: " + availableRooms);
             return ResponseEntity.ok(availableRooms);
         } catch (NoAvailableRoomException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

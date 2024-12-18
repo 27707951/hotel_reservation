@@ -23,8 +23,8 @@ public class RoomService {
         this.reservationRepository = reservationRepository;
     }
 
-    public List<RoomResponse> findAvailableRooms(LocalDate startDate, LocalDate endDate) {
-        List<Room> rooms = roomRepository.findAvailableRooms(startDate, endDate);
+    public List<RoomResponse> findAvailableRooms(LocalDate startDate, LocalDate endDate, Integer numberOfGuests) {
+        List<Room> rooms = roomRepository.findAvailableRooms(startDate, endDate, numberOfGuests);
 
         if (rooms.isEmpty()) {
             throw new NoAvailableRoomException("No rooms available for the given dates");

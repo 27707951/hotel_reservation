@@ -30,7 +30,7 @@ public class ReservationService {
     public ReservationResponse saveReservation(ReservationResponse response, Integer customerId, Integer roomId) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found."));
-        Room room = roomRepository.findById((long) roomId)
+        Room room = roomRepository.findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException("Room not found."));
         if (customer == null || room == null) {
             throw new IllegalArgumentException("Customer or Room information cannot be null.");

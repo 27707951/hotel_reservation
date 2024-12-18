@@ -1,18 +1,19 @@
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\controller\CustomerController.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\controller\ReservationController.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\controller\RoomController.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\CheckAvailabilityRequest.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\CustomerRequest.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\ReservationResponse.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\RoomResponse.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\exception\NoAvailableRoomException.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\HotelReservationApplication.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\model\Customer.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\model\Reservation.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\model\Room.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\repository\CustomerRepository.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\repository\ReservationRepository.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\repository\RoomRepository.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\service\CustomerService.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\service\ReservationService.java
-C:\LearningPath\113_Junior\113-1\IM3069__System_Analysis_and_Design\hotel_reservation\src\main\java\com\example\hotel_reservation\service\RoomService.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\config\GlobalCorsConfig.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\controller\CustomerController.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\controller\ReservationController.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\controller\RoomController.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\CheckAvailabilityRequest.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\CustomerRequest.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\ReservationResponse.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\dto\RoomResponse.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\exception\NoAvailableRoomException.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\HotelReservationApplication.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\model\Customer.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\model\Reservation.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\model\Room.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\repository\CustomerRepository.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\repository\ReservationRepository.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\repository\RoomRepository.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\service\CustomerService.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\service\ReservationService.java
+C:\Users\Jimmy Laio\Desktop\hotel_reservation\src\main\java\com\example\hotel_reservation\service\RoomService.java

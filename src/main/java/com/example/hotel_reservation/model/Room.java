@@ -8,10 +8,16 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id ;
+    @Column(name = "ID")
+    private Integer ID ;
 
+    @Column(name = "roomType")
     private String roomType ;
+
+    @Column(name ="price")
     private Integer price ;
+
+    @Column(name ="maxOccupancy")
     private Integer maxOccupancy;
 
     @Column(name = "imageUrl")
@@ -20,7 +26,7 @@ public class Room {
     public Room() {}
 
     public Room (Integer id, String roomType, Integer price , Integer maxOccupancy){
-        this.id = id;
+        this.ID = id;
         this.roomType = roomType;
         this.price = price;
         this.maxOccupancy = maxOccupancy;
@@ -28,11 +34,11 @@ public class Room {
     }
 
     public Integer getId() {
-        return id;
+        return ID;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.ID = id;
     }
 
     public String getRoomType() {

@@ -9,6 +9,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer id;
 
     @ManyToOne
@@ -19,8 +20,14 @@ public class Reservation {
     @JoinColumn(name = "roomID", referencedColumnName = "ID")
     private Room room;
 
+    /*@Column(name = "roomID")
+    private Integer roomID;
+*/
+    @Column(name ="startDate")
     private LocalDate startDate;
+    @Column(name ="endDate")
     private LocalDate endDate;
+    @Column(name ="detail")
     private String detail;
 
     // 無參數建構子（JPA 必需）
@@ -31,6 +38,7 @@ public class Reservation {
         this.id = id;
         this.customer = customer;
         this.room = room;
+        //this.roomID = roomID;
         this.startDate = startDate;
         this.endDate = endDate;
         this.detail = detail;
@@ -60,6 +68,14 @@ public class Reservation {
     public void setRoom(Room room) {
         this.room = room;
     }
+
+    /*public Integer getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(Integer roomID) {
+        this.roomID = roomID;
+    }*/
 
     public LocalDate getStartDate() {
         return startDate;
