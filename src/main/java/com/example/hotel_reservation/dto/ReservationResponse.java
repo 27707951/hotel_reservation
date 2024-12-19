@@ -1,5 +1,7 @@
 package com.example.hotel_reservation.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 
 public class ReservationResponse {
@@ -11,8 +13,10 @@ public class ReservationResponse {
     private Integer maxOccupancy;
     private String roomType;
     private String detail;
-    private Integer customerId;
-    private Integer roomId;
+    @JsonProperty("customerId")
+    private Integer customerID;
+    @JsonProperty("roomId")
+    private Integer roomID;
 
     public ReservationResponse() {
     }
@@ -28,13 +32,14 @@ public class ReservationResponse {
         this.maxOccupancy = maxOccupancy;
         this.roomType = roomType;
         this.detail = detail;
+
     }
 
-    public Integer getCustomerId() { return customerId; }
-    public void setCustomerId(Integer customerId) { this.customerId = customerId; }
+    public Integer getCustomerId() { return customerID; }
+    public void setCustomerId(Integer customerId) { this.customerID = customerId; }
 
-    public Integer getRoomId() { return roomId; }
-    public void setRoomId(Integer roomId) { this.roomId = roomId; }
+    public Integer getRoomId() { return roomID; }
+    public void setRoomId(Integer roomId) { this.roomID = roomId; }
 
     public Integer getId() {
         return id;

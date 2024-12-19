@@ -20,9 +20,7 @@ public class Reservation {
     @JoinColumn(name = "roomID", referencedColumnName = "ID")
     private Room room;
 
-    /*@Column(name = "roomID")
-    private Integer roomID;
-*/
+
     @Column(name ="startDate")
     private LocalDate startDate;
     @Column(name ="endDate")
@@ -30,10 +28,9 @@ public class Reservation {
     @Column(name ="detail")
     private String detail;
 
-    // 無參數建構子（JPA 必需）
     public Reservation() {}
 
-    // 帶參數建構子
+
     public Reservation(Integer id, Customer customer, Room room, LocalDate startDate, LocalDate endDate, String detail) {
         this.id = id;
         this.customer = customer;
@@ -44,7 +41,6 @@ public class Reservation {
         this.detail = detail;
     }
 
-    // Getters 和 Setters
     public Integer getId() {
         return id;
     }
@@ -69,13 +65,6 @@ public class Reservation {
         this.room = room;
     }
 
-    /*public Integer getRoomID() {
-        return roomID;
-    }
-
-    public void setRoomID(Integer roomID) {
-        this.roomID = roomID;
-    }*/
 
     public LocalDate getStartDate() {
         return startDate;

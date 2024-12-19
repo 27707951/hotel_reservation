@@ -53,7 +53,6 @@
         const endDate = params.get('endDate');
         const numberOfGuests = params.get('numberOfGuests');
 
-        // 構建完整的參數列表
         const queryParams = new URLSearchParams({
             guestName: guestName,
             guestPhone: guestPhone,
@@ -65,7 +64,6 @@
             numberOfGuests: numberOfGuests
         }).toString();
 
-        // 構建要傳送給後端的資料
         const payload = {
             name: guestName,
             phone: guestPhone,
@@ -73,7 +71,7 @@
         };
 
         try {
-            document.querySelector('.submitbutton').disabled = true; // 禁用按鈕
+            document.querySelector('.submitbutton').disabled = true;
             const response = await fetch('http://localhost:8080/customers', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -82,7 +80,7 @@
 
             if (response.ok) {
                 alert('Guest information saved successfully!');
-                // 跳轉到 CheckInfo.html 並攜帶參數
+
                 window.location.href = `CheckInfo.html?${queryParams}`;
             } else {
                 const errorText = await response.text();
@@ -92,7 +90,7 @@
             console.error('Error saving guest information:', error);
             alert('An error occurred while saving guest information. Please try again later.');
         } finally {
-            document.querySelector('.submitbutton').disabled = false; // 啟用按鈕
+            document.querySelector('.submitbutton').disabled = false;
         }
     });
 

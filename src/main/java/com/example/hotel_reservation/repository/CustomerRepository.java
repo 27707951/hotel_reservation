@@ -12,11 +12,10 @@ import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    // 查詢客戶資料 (根據 ID)
+
     @Query("SELECT c FROM Customer c WHERE c.ID = :id")
     Customer findCustomerById(@Param("id") Integer id);
 
-    // 更新客戶資料
     @Modifying
     @Transactional
     @Query("UPDATE Customer c SET c.name = :name, c.phone = :phone WHERE c.ID = :id")

@@ -27,33 +27,22 @@ public class ReservationService {
         this.roomRepository = roomRepository;
     }
 
-    public ReservationResponse saveReservation(ReservationResponse response, Integer customerId, Integer roomId) {
-        Customer customer = customerRepository.findById(customerId)
+    public Reservation saveReservation(Integer customerID, Integer roomID, LocalDate startDate, LocalDate endDate, String detail) {
+
+        Customer customer = customerRepository.findById(customerID)
                 .orElseThrow(() -> new IllegalArgumentException("Customer not found."));
-        Room room = roomRepository.findById(roomId)
+        Room room = roomRepository.findById(roomID)
                 .orElseThrow(() -> new IllegalArgumentException("Room not found."));
-        if (customer == null || room == null) {
-            throw new IllegalArgumentException("Customer or Room information cannot be null.");
-        }
 
         Reservation reservation = new Reservation();
         reservation.setCustomer(customer);
         reservation.setRoom(room);
-        reservation.setStartDate(response.getStartDate());
-        reservation.setEndDate(response.getEndDate());
-        reservation.setDetail(response.getDetail());
+        reservation.setStartDate(startDate);
+        reservation.setEndDate(endDate);
+        reservation.setDetail(detail);
 
-        Reservation savedReservation = reservationRepository.save(reservation);
-
-        return new ReservationResponse(
-                savedReservation.getId(),
-                customer.getName(),
-                customer.getPhone(),
-                savedReservation.getStartDate(),
-                savedReservation.getEndDate(),
-                room.getMaxOccupancy(),
-                room.getRoomType(),
-                savedReservation.getDetail()
-        );
+        return reservationRepository.save(reservation);
     }
 }
+
+
