@@ -29,8 +29,6 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
     List<Room> findByMaxOccupancy(@Param("capacity") Integer capacity);
 
     Optional<Room> findByRoomType(String roomType);
-
-
 }
 
 

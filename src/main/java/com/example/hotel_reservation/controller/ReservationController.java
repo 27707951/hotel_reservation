@@ -69,7 +69,6 @@ public class ReservationController {
                     response.getEndDate(),
                     response.getDetail()
             );
-
             return ResponseEntity.ok(savedReservation);
 
         } catch (IllegalArgumentException e) {

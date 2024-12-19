@@ -20,8 +20,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Transactional
     @Query("UPDATE Customer c SET c.name = :name, c.phone = :phone WHERE c.ID = :id")
     void updateCustomer(@Param("id") Integer id, @Param("name") String name, @Param("phone") String phone);
-
     Optional<Customer> findByNameAndPhone(String name, String phone);
-
 }
 

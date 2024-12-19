@@ -11,15 +11,6 @@ public class CustomerRequest {
     @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits.")
     private String phone;
 
-    private String detail;
-
-    public CustomerRequest() {}
-
-    public CustomerRequest(String name, String phone, String detail) {
-        this.name = name;
-        this.phone = phone;
-    }
-
     public String getName() {
         return name;
     }
@@ -30,9 +21,5 @@ public class CustomerRequest {
 
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 }

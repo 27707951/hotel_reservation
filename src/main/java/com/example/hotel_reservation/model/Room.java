@@ -45,33 +45,15 @@ public class Room {
         return roomType;
     }
 
-    public void setRoomType(String roomType){
-        this.roomType = roomType;
-
-    }
-
     public Integer getPrice() {
         return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
     }
 
     public Integer getMaxOccupancy() {
         return maxOccupancy;
     }
 
-    public void setMaxOccupancy(Integer maxOccupancy) {
-        this.maxOccupancy = maxOccupancy;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
 }

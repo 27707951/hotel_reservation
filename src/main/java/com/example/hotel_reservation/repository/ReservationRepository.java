@@ -19,7 +19,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
                                         @Param("startDate") LocalDate startDate,
                                         @Param("endDate") LocalDate endDate);
 
-
     @Modifying
     @Transactional
     @Query("DELETE FROM Reservation r WHERE r.id = :id")

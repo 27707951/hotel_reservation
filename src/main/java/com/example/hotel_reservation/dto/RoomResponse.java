@@ -23,38 +23,6 @@ public class RoomResponse {
         this.id = id;
     }
 
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public Integer getMaxOccupancy() {
-        return maxOccupancy;
-    }
-
-    public void setMaxOccupancy(Integer maxOccupancy) {
-        this.maxOccupancy = maxOccupancy;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     @Override
     public String toString() {
         return "RoomResponse{" +

@@ -20,7 +20,6 @@ public class Reservation {
     @JoinColumn(name = "roomID", referencedColumnName = "ID")
     private Room room;
 
-
     @Column(name ="startDate")
     private LocalDate startDate;
     @Column(name ="endDate")
@@ -30,12 +29,10 @@ public class Reservation {
 
     public Reservation() {}
 
-
     public Reservation(Integer id, Customer customer, Room room, LocalDate startDate, LocalDate endDate, String detail) {
         this.id = id;
         this.customer = customer;
         this.room = room;
-        //this.roomID = roomID;
         this.startDate = startDate;
         this.endDate = endDate;
         this.detail = detail;
@@ -80,10 +77,6 @@ public class Reservation {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
-    }
-
-    public String getDetail() {
-        return detail;
     }
 
     public void setDetail(String detail) {

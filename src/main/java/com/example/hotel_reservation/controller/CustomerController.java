@@ -34,6 +34,4 @@ public class CustomerController {
         Customer customer = customerService.updateCustomer(id, updatedCustomer);
         return customer != null ? ResponseEntity.ok(customer) : ResponseEntity.notFound().build();
     }
-
-
 }

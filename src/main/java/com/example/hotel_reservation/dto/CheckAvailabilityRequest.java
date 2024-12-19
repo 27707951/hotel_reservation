@@ -18,14 +18,6 @@ public class CheckAvailabilityRequest {
     @Min(value = 1, message = "Number of guests must be at least one.")
     private Integer numberOfGuests;
 
-    public CheckAvailabilityRequest() {}
-
-    public CheckAvailabilityRequest(LocalDate startDate, LocalDate endDate, int numberOfGuests) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.numberOfGuests = numberOfGuests;
-    }
-
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -44,9 +36,5 @@ public class CheckAvailabilityRequest {
 
     public int getNumberOfGuests() {
         return numberOfGuests;
-    }
-
-    public void setNumberOfGuests(Integer numberOfGuests) {
-        this.numberOfGuests = numberOfGuests;
     }
 }

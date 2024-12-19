@@ -13,8 +13,10 @@ public class ReservationResponse {
     private Integer maxOccupancy;
     private String roomType;
     private String detail;
+
     @JsonProperty("customerId")
     private Integer customerID;
+
     @JsonProperty("roomId")
     private Integer roomID;
 
@@ -36,10 +38,8 @@ public class ReservationResponse {
     }
 
     public Integer getCustomerId() { return customerID; }
-    public void setCustomerId(Integer customerId) { this.customerID = customerId; }
 
     public Integer getRoomId() { return roomID; }
-    public void setRoomId(Integer roomId) { this.roomID = roomId; }
 
     public Integer getId() {
         return id;
@@ -47,22 +47,6 @@ public class ReservationResponse {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getCustomerPhone() {
-        return customerPhone;
-    }
-
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
     }
 
     public LocalDate getStartDate() {
@@ -81,27 +65,7 @@ public class ReservationResponse {
         this.endDate = endDate;
     }
 
-    public Integer getMaxOccupancy() {
-        return maxOccupancy;
-    }
-
-    public void setMaxOccupancy(Integer maxOccupancy) {
-        this.maxOccupancy = maxOccupancy;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
     public String getDetail() {
         return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
     }
 }
